@@ -1,0 +1,59 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}}</h2>
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{product.idcontrat}}
+  </p>
+</div>
+<div class="modal-body">
+  <form  name="BanquesForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form-element label="" mod="banque">
+            <input type="text" id="example-hf-password" name="menus" placeholder="" ng-model="banque.libelle" class="form-control" ng-minlength="3"  ng-required="true" focus>
+            <label>ENTRER LE NOM D'UNE BANQUE </label>
+          </form-element>
+          <div id="inputFileDiv" class="form-group">
+            <label  class="custom-file-input file-blue">
+              <input type="file" name="file" file-model="banque.myFile" id="fichier" ng-file-select="onFileSelect($files)"/></label>
+            <input id="uploadFile" placeholder="Aucune Image Choisie" disabled="disabled" />
+          </div>
+          <div id="imageContent" class="form-group">
+            <div id="ImagePrevisuelDiv" class="col-sm-2">
+              <b>Previsualisation:</b>
+              <br />
+              <i ng-hide="imageSrc">Aucune Image Choisie</i>
+              <div ng-show="imageSrc.length>0">
+                <img ng-src="{{imageSrc}}" />
+              </div>
+              <!--
+              <br/>
+              <b>Progress:</b>
+              <progress value="{{progress}}"></progress>
+               -->
+            </div>
+            <div id="ImageActuelleDiv" class="col-sm-2 pull-right" ng-show="banque.logo">
+              <b>Image Actuelle:</b>
+              <br />
+              <img ng-src="Banque/imagesBanque/{{banque.logo}}" style="" ng-model="banque.logo" item-logo>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer">
+              <div class="col-sm-2  form-actions">
+                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+              </div>
+              <div class="col-sm-5 form-actions">
+                <button type="submit"ng-click="saveNewBanque(banque);"ng-disabled="NomgroupUtilisateursForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

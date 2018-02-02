@@ -1,0 +1,96 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header-section">
+            <h1>Gestion des Agences</h1>
+            {{verification}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3" style="">
+        <a href="" class="widget" ng-click="saveBanque(agence);">
+          <div class="widget-content widget-content-mini text-right clearfix">
+            <div class="widget-icon pull-left themed-background-warning">
+              <i class="gi gi-user text-light-op"></i>
+            </div>
+            <span class="text-muted">AJOUTER UNE AGENCE</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="row">
+        <div class="col-md-2 mui-textfield--float-label mui-select">
+          Pages
+          <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+          <label>Filtrer</label>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <br/>
+        <div class="widget">
+          <div class="col-md-7">
+            <table class="table table-borderless table-vcenter">
+              <thead>
+                <tr>
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Nom de la banque
+                  </th>
+                  <th>
+                    Agence
+                  </th>
+                  <th>
+                    Ville
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="agence in filtered = (agences | filter:search | orderBy :'-idagence' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idagence ="{{agence.idagence}}">
+                  <td>
+                    {{agence.idagence}}
+                  </td>
+                  <td>
+                    {{agence.liblleBanque}}
+                  </td>
+                  <td>
+                    {{agence.libelleagence}}
+                  </td>
+                  <td>
+                    {{agence.ville}}
+                  </td>
+                  <td class="text-center">
+                    <a href="" ng-click="saveBanque(agence);" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-xs btn-success"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="" ng-click="AgenceDelete(agence);" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-xs btn-danger"><i class="fa fa-times"></i> Supprimer</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng:include src="'layout/right.html'"></ng:include>
+  <ng:include src="'layout/left.html'"></ng:include>

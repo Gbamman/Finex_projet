@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <div class="block-options pull-right">
+        <button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+    </div>
+    <h2 class="modal-title">IMPORTATION</h2>
+</div>
+<div class="modal-body">
+    <form name="EtattForm" onsubmit="return false;" class="form-horizontal" enctype="multipart/form-data" >
+        <!-- Datepicker for Bootstrap (classes are initialized in js/app.js ->
+         uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
+        <!-- 
+        <input data-my-Directive type="file" name="file">
+         file-blue-->
+        <!-- 
+        <input type="file" name="fichier" id="fichier" onchange="inputFileOnChange();" />
+        <br />
+        <br />
+        <code id="console">
+            ...console...
+        </code>
+         -->
+        <div class="col-md-8">
+            <div class="form-group">
+                <label  class="custom-file-input"><input type="file" name="file" file-model="myFile" id="fichier" /></label>
+                <input id="uploadFile" placeholder="Pas de fichier Excel" disabled="disabled" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="modal-footer col-md-12">
+                <div class="col-sm-offset-3">
+                    <div class="col-sm-1 form-actions">
+                        <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Anuuler</button>
+                    </div>
+                    <div class="col-sm-1 form-actions">
+                        <button type="submit"ng-click="uploadFile()"class="btn btn-sm btn-success actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>Importation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

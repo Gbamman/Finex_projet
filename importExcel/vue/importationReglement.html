@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="progress progress-striped active chargementClass" ng-show="importProgress === true">
+    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+      Téléchargement en cours
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-8 ">
+    <div href="" class="widget">
+      <div class="widget-content widget-content-mini text-right clearfix themed-background-muted">
+        <div class=" pull-left ">
+          <form name="EtattForm" onsubmit="return false;" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group"  style="padding:10px !important;">
+              <label  class="custom-file-input"><input type="file" name="file" file-modelregl="myFile" id="fichier"/></label>
+              <input id="uploadFileReglement" placeholder="Pas de fichier Excel" disabled="disabled" style="width:300px !important;height:30px !important; padding-left:10px;"/>
+              <button  class="btn btn-effect-ripple btn-info"ng-click="uploadFileReglement(myFile)" style="margin-left:20px !important;">Valider</button>
+              <button  type="reset"class="btn btn-effect-ripple btn-danger"  style="margin-left:20px !important;">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="block full">
+  <div class="block-title"></div>
+  <div class="row">
+    <div class="col-md-2 mui-textfield--float-label mui-select">
+      Pages
+      <select ng-model="entryLimit" class="form-control">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+    <div class="col-md-4 mui-textfield mui-textfield--float-label filterContratClass">
+      <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+      <label>Filtrer</label>
+    </div>
+    <div class="col-md-1 "></div>
+    <div class="col-md-4">
+      <button  class="btn btn-effect-ripple btn-danger" ng-disabled="importProgress === true" ng-click="ReglementSubmit()"style="margin-top:30px !important; width:200px; padding:10px; font-weight:bold; font-size:1em">VALIDER</button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <br/>
+    <!-- Chart Widget class=""-->
+    <div class="widget">
+      <table id="example-datatable" class="table table-striped table-bordered table-vcenter export-table">
+        <thead>
+          <tr>
+            <!-- {{contratImprimer}} -->
+            <th class="text-center" style="width: 50px;">
+              <div ng-click="sort_by('idcontrat');">
+                ID
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('numcontrat');">
+                Reference Credit
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('nom');">
+                Reference Virement
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('prenom');">
+                N° Compte Debite  
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('dateeffet');">
+                Date D'opération  
+                <i class="glyphicon glyphicon-sort"></i>
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('capital');">
+                Date de valeur
+              </div>
+            </th>
+            <th>
+              <div ng-click="sort_by('duree ');">
+                montantcredite
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-hide="affichageReglement">
+            <td class="text-center" colspan="9" style="font-size:.7em !important">
+              <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+            </td>
+          </tr>
+          <tr ng-repeat="reglement in filtered = (affichageReglement | filter:search | orderBy :'-idregle' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" id ="{{reglement.idregle}}">
+            <!--  
+            <tr ng-repeat="product in products">
+               -->
+              <td class="text-center">
+                {{reglement.idregle}}
+              </td>
+              <td>
+                <strong>{{reglement.referencecredit}}</strong>
+              </td>
+              <td>
+                {{reglement.referencevirement}}
+              </td>
+              <td>
+                {{reglement.numcomptedebite}}
+              </td>
+              <td>
+                {{reglement.dateoperation | date: 'shortDate'}}
+              </td>
+              <td>
+                {{reglement.datevaleur | date: 'shortDate'}}
+              </td>
+              <td>
+                {{reglement.montantcredite | number}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant" max-size="10"></pagination>
+      </div>
+    </div>
+  </div>

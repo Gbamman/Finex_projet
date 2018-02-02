@@ -1,0 +1,82 @@
+<div class="modal-header" style="background:#8A2BE2;color:#fff">
+    <div class="block-options pull-right">
+        <button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:white !important;"></i></button>
+    </div>
+    <h2 class="modal-title">EXPORTATION EN MS EXCEL</h2>
+</div>
+<div class="modal-body">
+    <form  class="form-horizontal form-bordered" name="EtattForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="col-md-8">
+            <div class="form-group">
+                <div class="progress progress-striped active" ng-show="downloading">
+                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        Téléchargement en cours
+                    </div>
+                </div>
+                <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                    <input type="text" id="dateFormat" name="datedebut"  ng-model="etatProduction.datedebut"class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date  bordereau-etat >
+                    <label>Date de debut</label>
+                </div>
+                <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                    <input type="text" id="dateFormat" name="datefin" placeholder="" ng-model="etatProduction.datefin"class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" date-product valid-date />
+                    <label>Date de fin</label>
+                </div>
+                <div id="detail" style="display: {{detail.statut===false ? 'none': 'block'}}">
+                    <form-element mod="etatProduction" class="col-xs-12">
+                        <select id="example-hf-password" name="typedate"  ng-model="etatProduction.typedate" ng-class="form-control">
+                            <option value="dateeffet">date d'effet</option>
+                            <option value="datevalidation">date de validation</option>
+                            <option value="datereglement">date de reglement</option>
+                        </select>
+                        <span>Type de date</span>
+                    </form-element>
+                    <form-element label="" class="col-xs-12" style="form-element.form-group{border-bottom: 0px dotted #ebeef2}">
+                        <select id="niveau" name="niveau" placehoder=""  ng-model="etatProduction.niveau" ng-class="form-control">
+                            <option value="1">Rejet</option>
+                            <option value="2">Alerte</option>
+                            <option value="3">Proposition</option>
+                            <option value="4">Valide</option>
+                            <option value="5">Paye</option>
+                        </select>
+                        <span>Niveau du contrat</span>
+                    </form-element>
+                    <form-element class="col-xs-12" mod="product">
+                        <select  ng-model="etatProduction.idbanque"ng-change="filtrerAgence(etatProduction.idbanque)"id="example-hf-password" name="idbanque" class="form-control"  ng-options="idbanque as idbanque.libelle for idbanque in banqueAll  track by idbanque.id">
+                            <option value="{{idbanque.id}}">{{idbanque.libelle}}</option>
+                        </select>
+                        <span>Banque</span>
+                    </form-element>
+                    <form-element class="col-xs-12" mod="product">
+                        <select  ng-model="etatProduction.idagence"id="example-hf-password" name="idagence" placeholder="" class="form-control"ng-options="idagence as idagence.libelle for idagence in listeAgence  track by idagence.idagence"
+                        <option value="{{idagence.libelle}}">{{idagence.libelle}}</option>
+                    </select>
+                    <span>Agence</span>
+                </form-element>
+                <form-element class="col-xs-12" mod="product">
+                    <select  ng-model="etatProduction.uid"id="example-hf-password" name="utilisateur" placeholder="" class="form-control">
+                        <option  value="">SELECTIONNER UN UTILISATEUR</option>
+                        <option ng-repeat="user in utilisateurs" value="{{user.uid}}">{{user.name}} {{user.surname}}</option>
+                    </select>
+                    <span>Utilisateurs</span>
+                </form-element>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="modal-footer col-md-12">
+            <div class="col-sm-2 form-actions">
+                <button class="btn btn-sm btn-primary" ng-click="changeDetail()">{{detail.buttonText}}</button>
+            </div>
+            <div class="col-sm-2  form-actions">
+                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+            </div>
+            <div class="col-sm-2 form-actions">
+                <button type="submit"ng-click="saveEtatProduction(etatProduction);"ng-disabled="EtattForm.$invalid || enableUpdate"class="btn btn-sm btn-success actionsButtons"type="submit"><i class="ace-icon fa fa-download"></i>Télécharger</button>
+            </div>
+            <div class="col-sm-2  form-actions" ng-show="bordereauEtatButton===true">
+                <button type="submit"  ng-click="CreerBordereau(etatProduction);" class="btn btn-effect-ripple btn-primary">Creer un Bordereau</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>

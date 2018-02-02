@@ -1,0 +1,48 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}}</h2>
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{product.idcontrat}}
+  </p>
+</div>
+<div class="modal-body">
+  <form  name="detailPrimeForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <form-element label="" mod="detailprime">
+            <input type="text" id="example-hf-password" name="primedeces" placeholder="" ng-model="detailprime.primedeces" class="form-control" format="number" only-numbers focus>
+            <label>Prime Deces</label>
+          </form-element>
+          <form-element label="" mod="detailprime">
+            <input type="text" id="example-hf-password" name="primeperte" placeholder="" ng-model="detailprime.primeperte" class="form-control" format="number" only-numbers>
+            <label>Prime Perte emploi</label>
+          </form-element>
+          <form-element label="" mod="detailprime">
+            <input type="text" id="example-hf-password" name="montantsupprime" placeholder="" ng-model="detailprime.montantsupprime" class="form-control" format="number" only-numbers>
+            <label>Surprime</label>
+          </form-element>
+          <form-element label="" mod="detailprime">
+            <input type="text" id="example-hf-password" name="accessoires" placeholder="" ng-model="detailprime.accessoires" class="form-control" format="number" only-numbers>
+            <label>Accessoires</label>
+          </form-element>
+          <div class="form-group">
+            <div class="modal-footer col-sm-12">
+              <div class="col-sm-offset-1">
+                <div class="col-sm-4  form-actions">
+                  <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                </div>
+                <div class="col-sm-4 form-actions">
+                  <button type="submit"ng-click="saveDetailsPrime(detailprime);"ng-disabled="detailPrimeForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,65 @@
+ <!-- Main Sidebar -->
+                <div id="sidebar" style="background-color:#6E6E6E">
+                    <!-- Sidebar Brand -->
+                    <div id="sidebar-brand" class="" >
+                        <a href="#/dashbord" class="sidebar-title" style="background-color:#4DB3EC !important;">
+                           <img src="img/finex/favicon/favicon-32x32.png"> <span class="sidebar-nav-mini-hide">Finex<strong>PRET</strong></span>
+                        </a>
+                    </div>
+                    <!-- END Sidebar Brand -->
+
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Sidebar Navigation -->
+    
+
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a href="" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Menu</span></a>
+
+                                </li>
+
+                                <li class="sidebar-separator">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </li>
+                                <li class="text-center"ng-hide="menus" style="font-size:.7em !important"><i class="fa fa-spinner fa-2x fa-spin text-muted "></i></li>
+                            <li ng-repeat="(menu, value) in (menus | groupBy:'menu')">
+                                     
+                                    <!--  <accordion-group is-open="status.open">
+        <accordion-heading>
+            I can have markup, too! <i class="pull-right fa" ng-class="{'fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide': status.open, 'fa fa-rocket sidebar-nav-icon': !status.open}"></i>
+        </accordion-heading>
+        This is just some content to illustrate fancy headings.
+      </accordion-group> ng-click="ckeckPath(sousmenues.libelleSousMenue)"-->
+                                                   
+                                   <a href="" class="sidebar-nav-menu" process-on-enter style="color:#fff !important"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="{{value[0].icones}} sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">{{menu}}</span></a>
+                                  
+                                    <ul>
+                                        <li ng-repeat="sousmenues in value" ng-modal="sousmenues"  >
+                                            <a href="#/{{sousmenues.nomcourt}}" process-on-enter rootpath="10" droit-users style="color:#fff !important; border:none !important">{{sousmenues.libelleSousMenue}}</a>
+                                        </li>
+                                       
+                                    
+                                    </ul>
+                                  
+                                </li>
+                              
+                              
+                               
+                               
+                               
+                            </ul>
+                            <!-- END Sidebar Navigation -->
+
+                         
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+
+                    <!-- Sidebar Extra Info -->
+                
+                </div>
+                <!-- END Main Sidebar -->

@@ -1,0 +1,83 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}}</h2>
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{product.idcontrat}}
+  </p>
+</div>
+<div class="modal-body">
+  <form  name="CoassureurForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form-element label="" mod="coassureur">
+            <input type="text" id="example-hf-password" name="nomcoassureur" placeholder="" ng-model="coassureur.nomcoassureur" class="form-control"ng-required="true" focus>
+            <label>ENTRER LE NOM DU CO-ASSUREUER </label>
+          </form-element>
+          <div id="inputFileDiv" class="form-group">
+            <label  class="custom-file-input file-blue"><input type="file" name="file" file-model="coassureur.myFile" id="fichier" ng-file-select="onFileSelect($files)"/></label>
+            <input id="uploadFile" placeholder="Aucune Image choisie" disabled="disabled" />
+          </div>
+          <div id="imageContent" class="form-group">
+            <div id="ImagePrevisuelDiv" class="col-sm-2">
+              <b>Previsualisation:</b>
+              <br />
+              <i ng-hide="imageSrc">Aucune Image Choisie</i>
+              <div ng-show="imageSrc.length>0">
+                <img ng-src="{{imageSrc}}" />
+              </div>
+              <!--
+              <br/>
+              <b>Progress:</b>
+              <progress value="{{progress}}"></progress>
+               -->
+            </div>
+            <div id="ImageActuelleDiv" class="col-sm-2 pull-right" ng-show="coassureur.logo">
+              <b>Image Actuelle:</b>
+              <br />
+              <img ng-src="typepretFolder/imagecoassureur/{{coassureur.logo}}" style="" ng-model="coassureur.logo" item-logo>
+            </div>
+          </div>
+          <!--  
+          <input type="file" name="file" file-model="coassureur.myFile" id="fichier" ng-file-select="onFileSelect($files)"/>
+          <div class="banqueImage" style="width:100px !important; height:40px !important, border-radius:100% !important">
+            <i ng-hide="imageSrc">Acune Image Choisie</i>
+            <img ng-src="{{imageSrc}}" />
+            <br/>
+          </div>
+          <b>Progress:</b>
+          <progress value="{{progress}}"></progress>
+          <div class="banqueImage" ng-hide="imageSrc">
+            <img ng-src="typepretFolder/imagecoassureur/{{coassureur.logo}}" style="width:100px !important; height:40px !important, border-radius:100% !important" ng-model="coassureur.logo" item-logo>
+          </div>
+           -->
+          <!-- 
+          <div class="form-group">
+             -->
+            <form-element label="" mod="coassureur">
+              <input type="text" id="example-hf-password" name="part" placeholder="" ng-model="coassureur.part" class="form-control"  ng-required="true" focus>
+              <label>La part </label>
+            </form-element>
+            <form-element label="" mod="coassureur">
+              <select id="example-hf-password" name="estAperiteur" ng-model="coassureur.estAperiteur"  class="form-control">
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
+              </select>
+              <span>Est Aperiteur </span>
+            </form-element>
+            <div class="modal-footer col-md-12">
+              <div class="col-sm-4 col-md-offset-1 form-actions">
+                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+              </div>
+              <div class="col-sm-4 form-actions">
+                <button type="submit"ng-click="saveNewCoassureur(coassureur);"ng-disabled="CoassureurForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

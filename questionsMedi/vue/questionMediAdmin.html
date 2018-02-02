@@ -1,0 +1,40 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}}</h2>
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="questionsForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <form-element label="" mod="questionmedicale">
+                        <input type="text" id="example-hf-password" name="libelle" placeholder="" ng-model="questionmedicale.libelle" class="form-control"  ng-required="true" focus>
+                        <label>QUESTION MEDICALE</label>
+                    </form-element>
+                    <form-element label="" mod="questionmedicale">
+                        <input type="text" id="example-hf-password" name="tauxsup" placeholder="" ng-model="questionmedicale.tauxsup" class="form-control">
+                        <label>TAUX SUPPRIME</label>
+                    </form-element>
+                    <div class="form-group">
+                        <div class="modal-footer col-sm-12">
+                            <div class="col-sm-offset-1">
+                                <div class="col-sm-4  form-actions">
+                                    <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                                </div>
+                                <div class="col-sm-4 form-actions">
+                                    <button type="submit"ng-click="saveQuestion(questionmedicale);"ng-disabled="questionsForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>

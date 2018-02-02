@@ -1,0 +1,54 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}}</h2>
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{product.idcontrat}}
+  </p>
+</div>
+<div class="modal-body">
+  <form  name="saveProfilForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+              <select ng-model="gestionProfilObjet.get_all_group"id="example-hf-password" name="get_all_group" placeholder="" class="form-control"ng-options=" get_all_group as get_all_group.libelle for get_all_group in GetAllGroup  track by  get_all_group.idnomgroup">
+                <option value="{{get_all_group.libelle}}">{{get_all_group.libelle}}</option>
+              </select>
+              <span>NOM GROUPES UTILISATEURS</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+              <input type="text" id="register-username" name="libelleProfil" ng-model="gestionProfilObjet.libelleProfil" class="form-control" ng-required="true" focus>
+              <label>PROFIL UTILISATEUR </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+              <input type="text" id="register-username" name="chemin" ng-model="gestionProfilObjet.chemin" class="form-control" ng-required="true" focus>
+              <label>NOM COURT PAR DEFAUT</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer col-md-12">
+              <div class="col-sm-4 form-actions">
+                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+              </div>
+              <div class="col-sm-4 form-actions">
+                <button type="submit"ng-click="saveProfilUsers(gestionProfilObjet);"ng-disabled="saveProfilForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+              </div>
+              <div class="col-sm-4 form-actions col-md-offset-1" style="display:none">
+                <div class="col-sm-4 form-actions ">
+                  <button type="reset" ng-click="finish()" class="btn btn-effect-ripple btn-danger">Terminer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

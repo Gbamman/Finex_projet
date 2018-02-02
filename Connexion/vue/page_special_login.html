@@ -1,0 +1,45 @@
+<img src="img/fond sahges credit/black agent1.jpg" alt="Full Background" class="full-bg animation-pulseSlow" style="overflow:hidden !important;">
+<div id="login-container" style="background:#fff !important; margin:3% !important; padding:0 !important height:100px !important;min-height:90% !important; top:0 !important; left:70% !important;right: !important">
+    <div class="block animation-fadeInQuick" style="">
+        <!-- Login Title -->
+        <div class="block-title" style="background:#40E0D0;color:#fff">
+            <h2>Connexion</h2>
+        </div>
+        <form  name="connexionForm" id="form-login" role="form"  class="form-horizontal" novalidate>
+            <div class="form-group">
+                <div class="col-xs-12  mui-textfield  mui-textfield--float-label">
+                    <input type="text" id="login-email" name="pseudo" ng-model="connect.pseudo" class="form-control" placeholder="" ng-required="true" >
+                    <label for="login-email" style="background:none !important">Votre identifiant</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                    <input type="password" id="login-password" name="password" ng-model="connect.password" class="form-control" placeholder="" ng-required="true">
+                    <label for="login-password" style="background:none !important">Votre mot de passe</label>
+                </div>
+            </div>
+            <div class="form-group form-actions">
+                <div class="col-xs-8" style="display:none">
+                    <label class="csscheckbox csscheckbox-primary">
+                        <input type="checkbox" id="login-remember-me" name="login-remember-me">
+                        <span></span>
+                         Se souvenir de moi?
+                    </label>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <button ng-click="connexion(connect);"ng-disabled="connexionForm.$invalid || enableUpdate"class="btn btn-effect-ripple btn-sm btn-success"type="submit">Connexion</button>
+                </div>
+            </div>
+        </form>
+        <div class="form-group" style="display:none">
+            <div class="col-xs-12">
+                <p class="text-center remove-margin">
+                    <small>
+                        Vous n'avez pas un compte?
+                    </small>
+                    <a href="#/newcount" id="link-login"><small>Creer en un !</small></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

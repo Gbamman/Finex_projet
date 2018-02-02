@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-sm-6 col-lg-3 ">
+    <a href="" class="widget" ng-click="editNomgrp(gestionProfilObjet);">
+      <div class="widget-content widget-content-mini text-right clearfix font-weight-success-pale">
+        <div class="widget-icon pull-left themed-background-danger">
+          <i class="fa fa-check-circle text-light-op"></i>
+        </div>
+        <!--  
+        <h2 class="widget-heading h3 text-success">
+          <strong>+ <span data-toggle="counter" data-to="2862"></span></strong>
+        </h2>
+         -->
+        <span class="text-muted">GESTION DE PROFIL</span>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="block full">
+  <div class="block-title">
+    <!-- Page content -->
+    <!--
+    <button type="button" class="btn btn-danger fa fa-plus" >&nbsp;Ajouter un nouveau contrat</button>
+     -->
+  </div>
+  <div class="row">
+    <div class="col-md-2 mui-textfield--float-label mui-select">
+      Pages
+      <select ng-model="entryLimit" class="form-control">
+        <option>3</option>
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+    <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+      <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+      <label>Filtrer</label>
+    </div>
+    <div class="col-md-3" style="display:none">
+      <h5>
+         {{ filtered.length }} resultats trouves sur l'ensemble des {{ totalItems}} contrats
+      </h5>
+    </div>
+    <div class="col-md-3 " style="display:none">
+      <h5>
+        <i class="fa fa-print"></i>
+      </h5>
+    </div>
+    <div class="col-md-4" style="display:none">
+      <h5>
+        <i class="fa fa-file-pdf-o"></i>
+      </h5>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <!-- Chart Widget -->
+    <div class="widget" style="display:non ">
+      <div class="col-md-7">
+        <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+          <thead>
+            <tr>
+              <!-- {{contratImprimer}} -->
+              <!--
+              <th class="text-center" style="width: 50px;">
+                <a ng-click="sort_by('idcontrat');">ID</a>
+              </th>
+               -->
+              <th class="text-center">
+                ID
+              </th>
+              <th class="text-center">
+                NOM GROUPE
+              </th>
+              <th class="text-center">
+                PROFIL
+              </th>
+              <th class="text-center">
+                CHEMIN
+              </th>
+              <th class="text-center">
+                ACTION
+              </th>
+              <!-- 
+              <div style="display:none">
+                <th>
+                  <a ng-click="sort_by('prenom');">Nom court</a>
+                </th>
+                <th>
+                  <a>Action</a>
+                </th>
+              </div>
+               -->
+              <!-- 
+              <ul ng-repeat="sousmenues in value" ng-modal="sousmenues" style="text-align:left !important; padding:0px !important;">
+                <li> {{sousmenues.libelleSousMenue}}</li>
+              </ul>
+               -->
+              <!--
+              <td >
+                <ul ng-repeat="sousmenues in value" ng-modal="sousmenues" style="text-align:left !important; padding:0px !important;">
+                  <li style="text-align:left !important"> {{sousmenues.nomcourt}}</li>
+                </ul>
+              </td>
+                -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="gestionProfilObjet in filtered = (ListeProfilName | filter:search | orderBy :'-idprofil' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idgroup ="{{gestionProfilObjet.idprofil}}">
+              <td>
+                {{gestionProfilObjet.idprofil}}
+              </td>
+              <td>
+                {{gestionProfilObjet.libelleNomGroupe}} 
+              </td>
+              <td>
+                {{gestionProfilObjet.libelleProfil}} 
+              </td>
+              <td>
+                {{gestionProfilObjet.chemin}}
+              </td>
+              <td class="text-center">
+                <a href="" data-toggle="tooltip" title="Modifier le Profil" class="btn btn-effect-ripple btn-ms btn-success" ng-click="editNomgrp(gestionProfilObjet);"  style="width:80px"><i class="fa fa-pencil"></i> Edit</a>
+                <a href="" data-toggle="tooltip" title="Surppimer le Profil" alt="product"class="btn btn-effect-ripple btn-ms btn-danger" ng-click="surpProfilUsers(gestionProfilObjet);" style="width:80px"><i class="fa fa-times"></i> Supprimer</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+      </div>
+    </div>

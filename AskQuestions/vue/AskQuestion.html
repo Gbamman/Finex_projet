@@ -1,0 +1,55 @@
+<div class="table-responsive">
+  <br/>
+  <div class="widget">
+    <div class="col-md-12">
+      <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+        <thead>
+          <tr>
+            <th class="text-center">
+              Questions
+            </th>
+            <th class="text-center">
+              REPONSES(NON/OUI)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-hide="quetionsmedicales">
+            <td class="text-center" colspan="4" style="font-size:.7em !important">
+              <img src="img/477.gif" style="width:30px !important;height:30px !important">
+            </td>
+          </tr>
+          <tr ng-repeat="questionmedicale in  quetionsmedicales">
+            <td style="display: none;">
+              {{questionmedicale.idm}}
+            </td>
+            <td>
+              {{questionmedicale.libelle}}
+            </td>
+            <td class="text-center">
+              <label class="switch switch-primary">
+                <input type="checkbox" ng-checked="questionmedicale.reponses==='OUI'"  ng-click="changerEtatQuestion(questionmedicale)">
+                <span data-toggle="tooltip" title="Reponse aux Questions" name="reponses" placeholder="" ng-model="questionmedicale.reponses"></span>
+              </label>
+            </td>
+            <!-- 
+            <td>
+              <button class="btn" ng-class="{Actif:'btn-success', Inactif:'btn-danger'}[questionmedicale.etat]" style="width:90px; font-size:.8em"  ng-click="changerEtatQuestion(questionmedicale);">{{questionmedicale.etat}}</button>
+            </td>
+             -->
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-footer">
+        <div class="col-sm-offset-2 col-sm-8">
+          <div class="col-sm-2 form-actions">
+            <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+          </div>
+          <div class="col-sm-2 form-actions">
+            <button type="submit"ng-click="saveQuestion(questionmedicale);"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

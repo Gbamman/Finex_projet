@@ -1,0 +1,2 @@
+ALTER TABLE `contrat` ADD COLUMN `numbordregle` varchar(100) DEFAULT NULL AFTER `referencecredit`, ADD COLUMN `numbordvalide` varchar(100) DEFAULT NULL AFTER `referencecredit`, ADD COLUMN `datereglement` date DEFAULT NULL AFTER `referencecredit`, ADD COLUMN `datevalidation` date DEFAULT NULL AFTER `referencecredit`;
+ALTER TABLE `synchronisationnum` ADD COLUMN `numreglement` int(11) NOT NULL DEFAULT '1' AFTER `utilisateurs`, ADD COLUMN `numproduction` int(11) NOT NULL DEFAULT '1' AFTER `utilisateurs`;

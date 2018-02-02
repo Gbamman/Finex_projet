@@ -1,0 +1,227 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:#fff;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}} N° : {{product.numeropret}}</h2>
+    <!--  
+    <h6>
+         {{finalTotal()}}
+    </h6>
+     -->
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="productForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" name="numcontrat" placeholder="" ng-model="product.numcontrat" class="form-control"  only-numbers ng-required="true" remumber-name>
+                        <label>N° de compte <b class="text-danger">*</b></label>
+                        <div ng-messages="productForm.numcontrat.$error" class="ErreurMessage">
+                            <small ng-message="minlength" class="text-danger">
+                                Ce champ doit comporter 19 caracteres.
+                            </small>
+                        </div>
+                    </form-element>
+                    <!--
+                    <input type="hidden" name="swichvalue" value="contrats" ng-model="contat.swichvalue">
+                    ng-minlength="3" ng-required="true" focus>
+                    <label>Votre prenom  <b class="text-danger">*</b></label>
+                    <div ng-messages="InscriptionForm.surname.$error" class="ErreurMessage">
+                        <small ng-message="minlength" class="text-warning">
+                            Ce champs doit comporter plus 3 caractere.
+                        </small>
+                        <small ng-message="maxlength" class="text-info">
+                            Prenom de l'utilisateur trop long
+                        </small>
+                    </div>
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" name="numeropret" placeholder="" ng-model="product.numeropret" class="form-control" disabled='true' required>
+                        <label>Numero <b class="text-danger">*</b></label>
+                    </form-element>
+                     -->
+                    <form-element label="" mod="product">
+                        <select id="example-hf-password" name="status"ng-model="product.status" >
+                            <option value="SOUSCRIPTION">SOUSCRIPTION</option>
+                            <option value="ANNULATION">ANNULATION</option>
+                        </select>
+                        <span>Statut</span>
+                    </form-element>
+                    <form-element mod="product">
+                        <select ng-model="product.idbanque" ng-change="AgenceId(product.idbanque.id,product.idbanque.etat);"id="example-hf-password" name="idbanque" class="form-control dinamique-select"  ng-options="idbanque as idbanque.libelle for idbanque in banqueContrat  track by idbanque.id">
+                            <option value="{{idbanque.libelle}}">{{idbanque.libelle}}</option>
+                        </select>
+                        <span>Banque</span>
+                    </form-element>
+                    <form-element mod="product">
+                        <select ng-model="product.idagence"id="example-hf-password" name="idagence" placeholder="" class="form-control"ng-options="idagence as idagence.libelle for idagence in agences  track by idagence.idagence">
+                            <option value="{{idagence.libelle}}">{{idagence.libelle}}</option>
+                        </select>
+                        <span>Agence<b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element mod="product">
+                        <select ng-model="product.typepret"ng-options="typepret as typepret.libelle for typepret in selectedBanqueTypePret  track by typepret.idtypepret"id="example-hf-password" name="typepret" class="form-control"verif-prime>
+                            <option value="{{typepret.libelle}}">{{typepret.libelle}}</option>
+                        </select>
+                        <span>Type de prêt <b class="text-danger">*</b></span>
+                    </form-element>
+                </div>
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-email" name="nom" placeholder="" ng-model="product.nom" class="form-control" ng-required="true" ng-minlength="1">
+                        <span>Nom <b class="text-danger">*</b></span>
+                        <div ng-messages="productForm.nom.$error" class="ErreurMessage">
+                            <div ng-message="minlength" class="text-warning">
+                                Ce nom est top court
+                            </div>
+                        </div>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" name="prenom" placeholder=""class="form-control" ng-model="product.prenom" class="form-control" ng-required="true">
+                        <span>Prenom <b class="text-danger">*</b></span>
+                        <div ng-messages="productForm.prenom.$error" class="ErreurMessage">
+                            <div ng-message="minlength" class="text-warning">
+                                Ce prenom est top court
+                            </div>
+                            <div ng-message="maxlength" class="text-info">
+                                Ce prenom est trop long
+                            </div>
+                        </div>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="dateFormat" name="datenaissance" placeholder="" ng-model="product.datenaissance" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date verif-prime positionCompteur echeance-date/>
+                        <span>Date de naissance<b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element mod="product">
+                        <select id="example-hf-password" name="sexe" placeholder=""ng-model="product.sexe" class="form-control">
+                            <option value="M">Masculin</option>
+                            <option value="F">Feminin</option>
+                        </select>
+                        <span>Sexe <b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" name="profession" ng-model="product.profession"  placeholder="" class="form-control">
+                        <label>Profession</label>
+                    </form-element>
+                </div>
+            </div>
+        </div>
+        <div class="block block-themes">
+            <div class="block-title">
+                <h2>CARACTERISTIQUE DU CREDIT</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <input type="text" class="form-control" ng-required="true"  name="capital" format="number" ng-model="product.capital" only-numbers verif-prime positionCompteur>
+                        <label>Capital <b class="text-danger">*</b></label>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="dateFormat" name="dateeffet" placeholder="" ng-model="product.dateeffet"  class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" verif-prime>
+                        <label>Date effet<b class="text-danger">*</b></label>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="dateFormat" name="duree" placeholder="" ng-model="product.duree" class="form-control" ng-required="true" echeance-date verif-prime positionCompteur>
+                        <label>
+                            Durée 
+                            <small>
+                                En mois
+                            </small>
+                            <b class="text-danger">*</b>
+                        </label>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="texte" id="dateFormat" name="dateecheance" placeholder="" ng-model="product.dateecheance"  class="form-control" ng-required="true"  disabled="true" model-view-value="true">
+                        <label>Date d'écheance <b class="text-danger">*</b></label>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" name="tauxemprunt" placeholder="" ng-model="product.tauxemprunt"class="form-control" ng-required="true" only-numbers verif-prime positionCompteur>
+                        <label>Taux d'emprunt <b class="text-danger">*</b></label>
+                    </form-element>
+                    <form-element label="" mod="product" ng-show="product.gestionCoassurance===true  &amp;&amp; product.primeassurance >0">
+                        <button  ng-click="detailprimeQuestion(detailprime)" class="btn btn-effect-ripple btn-info pull-left" >Details prime</button>
+                    </form-element>
+                </div>
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <select id="example-hf-password" name="reglementprime" placeholder=""ng-model="product.reglementprime" class="form-control">
+                            <option value="UNIQUE">Unique</option>
+                            <!-- 
+                            <option value="ANNNUEL">Annuel</option>
+                             -->
+                        </select>
+                        <span>Reglement des primes <b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <select id="example-hf-password" name="periodicite" placehoder="" ng-model="product.periodicite" class="form-control" verif-prime>
+                            <option value="mensuelle">Mensuelle</option>
+                            <option value="bimestrille">Bimestrielle</option>
+                            <option value="trimestrielle">Trimestrielle</option>
+                            <option value="semestrielle">Semestrielle</option>
+                            <option value="annuelle">Annuelle</option>
+                        </select>
+                        <span>Periodicite de remboursement <b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-password" placeholder="" name="differe" ng-model="product.differe" class="form-control"  ng-required="true" only-numbers verif-prime positionCompteur>
+                        <label>Differé <b class="text-danger">*</b></label>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <select id="example-hf-password" name="perteemploi" ng-model="product.perteemploi" class="form-control" verif-prime>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                        </select>
+                        <span>Perte d'emploi <b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element mod="product" >
+                        <select id="example-hf-password" name="remboursement" placeholder=""ng-model="product.remboursement" class="form-control" verif-prime style='margin-top:-5px' >
+                            <option value="PERIODIQUE">Périodique</option>
+                            <option value="A TERME">A terme</option>
+                        </select>
+                        <span>Remboursement de Prêt<b class="text-danger">*</b></span>
+                    </form-element>
+                    <form-element label="" mod="product">
+                        <button  ng-click="questionnaire()" class="btn btn-effect-ripple btn-danger pull-right" >Quetionnaire Medical</button>
+                    </form-element>
+                </div>
+            </div>
+        </div>
+        <div class="block block-themes">
+            <div class="block-title">
+                <h2>PRIME</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-email" placeholder=""name="tauxprimes" ng-model="product.tauxprimes" class="form-control" ng-required="true" only-numbers ng-disabled="true">
+                        <label>Taux de prime <b class="text-danger">*</b></label>
+                    </form-element>
+                </div>
+                <div class="col-md-4">
+                    <form-element label="" mod="product">
+                        <input type="text" id="example-hf-email" name="primeassurance" ng-model="product.primeassurance" class="form-control" ng-required="true" only-numbers ng-disabled="true" format="number">
+                        <label>Prime Assurance <b class="text-danger">*</b></label>
+                    </form-element>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="modal-footer col-md-12">
+                <div class="col-sm-4 col-md-offset-8 form-actions">
+                    <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                </div>
+                <div class="col-sm-4 form-actions">
+                    <button type="submit"ng-click="saveProduct(product);"ng-disabled="productForms.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

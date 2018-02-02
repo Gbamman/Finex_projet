@@ -1,0 +1,59 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}}</h2>
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{product.idcontrat}}
+  </p>
+</div>
+<div class="modal-body">
+  <form  name="saveGroupeForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+              <select ng-model="ModelGroupe.grputilisateur"ng-change="Grputilisateur(ModelGroupe.grputilisateur)"id="example-hf-password" name="grputilisateur" placeholder="" class="form-control"ng-options=" grputilisateur as grputilisateur.libelle for grputilisateur in nomgrouputilisateurs  track by  grputilisateur.idnomgroup">
+                <option value="{{grputilisateur.libelle}}">{{grputilisateur.libelle}}</option>
+              </select>
+              <span>LISTE DE GROUPES UTILISATEURS</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+              <select ng-model="ModelGroupe.sousmenusutilisateur"ng-change="Sousmenusutilisateur(ModelGroupe.sousmenusutilisateur)"id="example-hf-password" name="sousmenusutilisateur" placeholder="" class="form-control"ng-options="sousmenusutilisateur as sousmenusutilisateur.libelle for sousmenusutilisateur in sousmenusutilisateurs  track by  sousmenusutilisateur.idsousmenu">
+                <option value="{{ sousmenusutilisateur.libelle}}">{{sousmenusutilisateur.libelle}}</option>
+              </select>
+              <span>LISTE DES SOUS MENUS</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+              <selectng-model="ModelGroupe.actionMenue" name="actionMenue" class="form-control">
+                <option value="consultation">Consultation</option>
+                <option value="modification">Modification</option>
+                <option value="ecriture">Ecriture</option>
+              </select>
+              <span>ACTION SUR LE MENU</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer col-md-12">
+              <div class="col-sm-4 form-actions" style="display:none">
+                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+              </div>
+              <div class="col-sm-4 form-actions">
+                <button type="submit"ng-click="saveGroupeUsers(ModelGroupe);"ng-disabled="saveGroupeForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+              </div>
+              <div class="col-sm-4 form-actions col-md-offset-1">
+                <div class="col-sm-4 form-actions ">
+                  <button type="reset" ng-click="finish()" class="btn btn-effect-ripple btn-danger"> Terminer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

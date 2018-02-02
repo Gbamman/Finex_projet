@@ -1,0 +1,107 @@
+<div style="zoom:100%">
+    <button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:#fff !important;"></i></button>
+    <div class="modal-header" style="background:#8A2BE2;color:#fff">
+        <h3 class="modal-title">EVALUER UNE PRIME</h3>
+    </div>
+    <div class="modal-body">
+        <form  name="productForm" action="" method="" class="form-horizontal" onsubmit="return false;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form-element label="" mod="product">
+                            <input type="text" id="example-hf-password" name="datenaissance" placeholder="" ng-model="product.datenaissance"class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date>
+                            <label>Date de naissance</label>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <input type="text" id="dateFormat" name="dateeffet" placeholder="" ng-model="product.dateeffet"  class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true">
+                            <label>Date effet<b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <input type="text" id="example-hf-email" name="capital" placeholder="" class="form-control"ng-model="product.capital" format="number" only-numbers >
+                            <label>Capital</label>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <input type="text" id="example-hf-password" name="duree" placeholder="" ng-model="product.duree" class="form-control" ng-required="true" echeance-date >
+                            <label>Durée</label>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <input type="text" id="example-hf-password" placeholder="" name="differe" ng-model="product.differe" class="form-control"  ng-required="true" only-numbers >
+                            <label>Differé <b class="text-danger">*</b></label>
+                        </form-element>
+                    </div>
+                    <div class="col-md-4">
+                        <form-element label="" mod="product">
+                            <input type="text" id="example-hf-email" placeholder=""name="tauxemprunt" ng-model="product.tauxemprunt" class="form-control" ng-required="true">
+                            <label>Taux d'emprunt</label>
+                        </form-element>
+                        <form-element mod="product">
+                            <selectng-model="product.typepret"id="example-hf-password" name="typepret"placeholder="" class="form-control"ng-options="typepret as typepret.libelle for typepret in selectedBanqueTypePret  track by typepret.idtypepret">
+                                <option value="{{typepret.idtypepret}}">{{typepret.libelle}}</option>
+                            </select>
+                            <span>Type de prêt <b class="text-danger">*</b></span>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <select id="example-hf-password" name="perteemploi" ng-model="product.perteemploi" class="form-control">
+                                <option value="oui">Oui</option>
+                                <option value="non">Non</option>
+                            </select>
+                            <span>Perte d'emploi</span>
+                        </form-element>
+                        <form-element mod="product" >
+                            <select id="example-hf-password" name="remboursement" placeholder=""ng-model="product.remboursement" class="form-control">
+                                <option value="PERIODIQUE">Périodique</option>
+                                <option value="A TERME">A terme</option>
+                            </select>
+                            <span>Remboursement de Prêt<b class="text-danger">*</b></span>
+                        </form-element>
+                        <form-element label="" mod="product">
+                            <select id="example-hf-password" name="periodicite" placehoder="" ng-model="product.periodicite" class="form-control">
+                                <option value="mensuelle">Mensuelle</option>
+                                <option value="bimestrille">Bimestrielle</option>
+                                <option value="trimestrielle">Trimestrielle</option>
+                                <option value="semestrielle">Semestrielle</option>
+                                <option value="annuelle">Annuelle</option>
+                            </select>
+                            <span>Periodicite de remboursement <b class="text-danger">*</b></span>
+                        </form-element>
+                    </div>
+                </div>
+                <!-- col-md-offset-1 -->
+            </div>
+            <div class="form-group">
+                <div class="modal-footer col-md-12">
+                    <div class="col-sm-8 col-md-4 form-actions" ng-show="product.primeassurance>0">
+                        <!-- 
+                        <h6 ng-model="product.primedeces">
+                             Prime Decès : {{product.primedeces | number}}
+                        </h6>
+                        <h6 ng-model="product.primePE">
+                             Prime  PE :  {{product.primePE | number}}
+                        </h6>
+                        <h6 ng-model="product.Accessoires">
+                             Accessoires : {{product.Accessoires | number}}
+                        </h6>
+                         -->
+                        <small>
+                            Prime Assurance
+                        </small>
+                        <br>
+                        <strong>{{product.primeassurance | number}} FCFA</strong>
+                    </div>
+                    <div class="col-sm-6 col-md-offset-6">
+                        <div class="col-sm-2  form-actions">
+                            <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                        </div>
+                        <div class="col-sm-2 form-actions">
+                            <button type="submit" ng-click="simulationClick(product)"ng-disabled="productForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>Simulation</button>
+                        </div>
+                        <div class="col-sm-2 form-actions">
+                            <button type="submit" ng-click="sendClick(product)"ng-disabled="productForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

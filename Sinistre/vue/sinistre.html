@@ -1,0 +1,166 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header-section">
+            <h1>{{menu}}<a href="#/{{nomcourt}}" style="text-decoration: none">{{sousmenu}}</a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3" >
+        <div class="widget" ng-click="prestationDeclare(prestationdeclare);" style="cursor:pointer">
+          <div class="widget-content widget-content-mini text-left clearfix">
+            <div class="widget-icon pull-right themed-background-danger">
+              <i class="fa fa-ambulance text-light-op" aria-hidden="true"></i>
+            </div>
+            <span class="text-muted">DECLARER UNE PRESTATAION </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3" >
+        <div  class="widget"  ng-click="etatprestation(etatprestation);" style="cursor:pointer">
+          <div class="widget-content widget-content-mini text-left clearfix">
+            <div class="widget-icon pull-right themed-background">
+              <i class="fa fa-area-chart text-light-op" aria-hidden="true"></i>
+            </div>
+            <span class="text-muted">ETAT DES PRESTATIONS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="block-title"></div>
+      <div class="row">
+        <div class="col-md-2 mui-textfield--float-label mui-select">
+          Pages
+          <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div class="col-md-4 mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+          <label>Filtrer</label>
+        </div>
+        <div class="col-md-4 mui-textfield mui-textfield--float-label filterContratClass" style="visibility:visible">
+          <input type="search" ng-model="critereRecherche">
+          <label>Recherche</label>
+        </div>
+        <div class="col-md-2" style="">
+          <button  class="btn btn-effect-ripple btn-info"  ng-click="searchContrat(critereRecherche)"style="margin-top:30px !important;">Rechercher</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <br/>
+        <!-- Chart Widget class=""-->
+        <div class="widget">
+          <table id="example-datatable" class="table table-striped table-bordered table-vcenter export-table">
+            <thead>
+              <tr>
+                <!-- {{contratImprimer}} -->
+                <th class="text-center" style="width: 50px; text-decoration:none">
+                  <small>
+                    ID
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    PRESTATION
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    DATE DECLARATION
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    NOM DU DECLARANT
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    MONTANT ATTENDU
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    MONTANT REGLE
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    DATE DE REGLEMENT
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    OBSERVATIONS
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    Action
+                  </small>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-hide="sinistres">
+                <td class="text-center" colspan="10" style="font-size:.7em !important">
+                  <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+                </td>
+              </tr>
+              <tr ng-repeat="prestationdeclare in filtered = (sinistres | filter:search | orderBy :'-idsinistre' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idsinistre ="{{prestationdeclare.idsinistre}}">
+                <!--  
+                <tr ng-repeat="product in products">
+                   -->
+                  <td class="text-center">
+                    {{prestationdeclare.idsinistre}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.libelle}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.datedeclaration | date: 'shortDate'}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.nomdeclarant}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.montantattendu | number}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.montantregle | number}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.datereglement = ((prestationdeclare.datereglement | comeBack)===true) ? (prestationdeclare.datereglement | date: 'shortDate') : ""}}
+                  </td>
+                  <td>
+                    {{prestationdeclare.observations}}
+                  </td>
+                  <td class="text-center">
+                    <a href="" data-toggle="tooltip" title="Modifier le contrat" class="btn btn-effect-ripple btn-xs btn-success" ng-click="prestationDeclare(prestationdeclare);"><i class="fa fa-pencil"></i> Modifier</a>
+                    <a data-toggle="tooltip" title="Imprimer cette prestation" class="btn btn-effect-ripple btn-xs btn-info" ng-click="imprimerPrestation(prestationdeclare);" >Imprimer</a>
+                    <a data-toggle="tooltip" title="Supprime cette prestation" class="btn btn-effect-ripple btn-xs btn-danger" ng-click="deleteSinistre(prestationdeclare);" > Supprimer</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant" max-size="10"></pagination>
+          </div>
+        </div>
+      </div>
+      <ng:include src="'layout/right.html'"></ng:include>
+      <ng:include src="'layout/left.html'"></ng:include>
+      <!--  
+      <div ng-show="contratImprimer.length > 0">
+        <ng:include src="'vue/BIA.php'"></ng:include>

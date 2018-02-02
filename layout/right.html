@@ -1,0 +1,65 @@
+  <!-- Alternative Sidebar -->
+        
+            <!-- Preloader -->
+            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
+            <div class="preloader">
+                <div class="inner">
+                    <!-- Animation spinner for all modern browsers -->
+                    <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
+
+                    <!-- Text for IE9 -->
+                    <h3 class="text-primary visible-lt-ie10"><strong>Loading..</strong></h3>
+                </div>
+            </div>
+                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll-alt">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Profile -->
+                            <div class="sidebar-section">
+                                <h2 class="text-light">Profile</h2>
+                    <form name="modificationForm"  class="form-control-borderless" onsubmit="return false;">
+                                    <div class="form-group">
+                                        <label for="side-profile-name">Nom</label>
+                                        <input type="text" id="side-profile-name" name="name" class="form-control" value="" ng-model="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-email">Email</label>
+                                        <input type="email" id="side-profile-email" name="email" class="form-control" value="" ng-model="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-password">Nouveau mot de passe</label>
+                                        <input type="password" id="side-profile-password" name="password1" class="form-control" ng-model="modification.password1">
+                                        <p class="errorMessages" data-ng-show="passwordForm.password1.$dirty && passwordForm.password.$invalid && passwordForm.password.$error.required"> <i class="hi hi-warning-sign" style="color:red"></i> Entrer un nouveau mot de passe</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="side-profile-password-confirm">Confirmer le Nouveau mot de passe</label>
+                                        <input type="password" id="side-profile-password-confirm" name="password2" class="form-control" ng-model="modification.password2">
+                                             <p class="errorMessages" data-ng-show="passwordForm.password2.$dirty && passwordForm.password2.$error.required"> <i class="hi hi-warning-sign" style="color:red"></i> Entrer votre un nouveau mot de passe</p>
+                                 <p class="errorMessages" data-ng-show="passwordForm.password2.$dirty && passwordForm.password2.$error.passwordNoMatch && !passwordForm.password2.$error.required"> Mots de passes differents.</p>
+                                    </div>
+                                    <div class="form-group remove-margin">
+                                        <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Enrégistrer</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- END Profile -->
+
+                            
+                        </div>
+                        <!-- END Sidebar Content -->
+                    </div>
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+               
+                    </div> 
+              
+                <!-- END Main Sidebar -->
+
+                <!-- Main Container -->

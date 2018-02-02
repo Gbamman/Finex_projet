@@ -1,0 +1,43 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+  <h2 class="modal-title">{{title}} N° : {{produit.numproduit}}</h2>
+  <!--  
+  <h6>
+     {{finalTotal()}}
+  </h6>
+   -->
+  <p style="display:none;" class="col-md-offset-3">
+     Les champs portant l'indice 
+    <span class="text-danger">*</span>
+     sont obligatoires {{produit.idcontrat}}
+  </p>
+</div>
+<ul class="mui-tabs__bar">
+  <a href="" class="">
+    <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-events-1" ng-click="menusAction();">ETAPE 1</a></li>
+  </a>
+  <a href="" class="">
+    <li><a data-mui-toggle="tab" data-mui-controls="pane-events-2"  ng-click="sousmenusAction();">ETAPE 2</a></li>
+  </a>
+</ul>
+<div class="modal-body">
+  <form  name="produitForm" class="form-horizontal"  onsubmit="return false;">
+    <div class="mui-tabs__pane mui--is-active" id="pane-events-1">
+      <ng:include src="'Produits/vue/editProduit1.html'"></ng:include>
+    </div>
+    <div class="mui-tabs__pane" id="pane-events-2">
+      <ng:include src="'Produits/vue/editProduit2.html'"></ng:include>
+    </div>
+    <div class="form-group">
+      <div class="modal-footer col-md-12 col-xs-12">
+        <div class="col-sm-4 col-md-offset-8 col-xs-12 form-actions">
+          <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+        </div>
+        <div class="col-sm-4 col-xs-12 form-actions">
+          <button type="submit"ng-click="saveProduit(produit);"ng-disabled="produitForms.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

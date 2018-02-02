@@ -1,0 +1,82 @@
+ <div class="row">
+                                     <div class="col-sm-6 col-lg-3">
+                                       <a href="" class="widget" ng-click="editTypePret(coassureur);">
+                                        <div class="widget-content widget-content-mini text-left clearfix">
+                                            <div class="widget-icon pull-right themed-background-success">
+                                                <i class="gi gi-user text-light-op"></i>
+                                            </div>
+                                            <span class="text-muted">AJOUTER UN CO-ASUREUR</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="block full">
+                            <div class="block-title">
+                            </div>
+                            <div class="row">
+                                  <div class="col-md-2 mui-textfield--float-label mui-select">Pages
+                                      <select ng-model="entryLimit" class="form-control">
+                                          <option>5</option>
+                                          <option>10</option>
+                                          <option>20</option>
+                                          <option>50</option>
+                                          <option>100</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+                                      <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+                                      <label>Filtrer</label>
+                                  </div>
+                                  <div class="col-md-3" style="display:none">
+                                      <h5> {{ filtered.length }} resultats trouves sur l'ensemble des {{ totalItems}} contrats</h5>
+                                  </div>
+                                  <div class="col-md-3 " style="display:none">>
+                                    <h5><i class="fa fa-print"></i></h5>
+                                  </div>
+                                  <div class="col-md-4" style="display:none">>
+                                    <h5><i class="fa fa-file-pdf-o"></i></h5>
+                                  </div>
+                              </div>
+                          
+                            <div class="table-responsive">
+                              <br/>
+                                <div class="widget">
+                                          <div class="col-md-7">
+                                    <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">BANQUES</th>
+                                            <th class="text-center">LOGOS</th>
+                                            <th class="text-center">STATUS</th>
+                                            <th class="text-center">ACTION</th>          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr ng-repeat="coassureur in filtered = (coassureurs | filter:search | orderBy :'-idcoass' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idcoass ="{{coassureur.idcoass}}">
+                                            <td class="text-center">{{coassureur.idcoass}}</td>
+                                            <td>{{coassureur.nomcoassureur}}
+                                               
+                                            </td>
+                                            <td class="text-center">
+                                                 <div class="banqueImage"><img ng-src="typepretFolder/imagecoassureur/{{coassureur.logo}}" style="width:100px !important; height:40px !important"></div>
+                                                 <!-- <div class="banqueImage"><img ng-src="{{ImageBanque}}" style="width:100px !important; height:40px !important"></div> -->
+                                            </td>
+                                                 <td>
+                                                   <div ng-class="Etataction =(coassureur.etat ==0) ?'Actif':'Inactif'"></div>
+                                                  <button class="btn" ng-class="{0:'btn-success', 1:'btn-danger'}[coassureur.etat]" 
+                                                      style="width:90px; font-size:.8em"  ng-click="changerEtatCoassureur(coassureur);">
+                                                        {{Etataction}}</button></td>
+                                            <td class="text-center">
+                                                <a href="" data-toggle="tooltip" title="Modifier le contrat" class="btn btn-effect-ripple btn-ms btn-success" ng-click="editTypePret(coassureur);"  style="width:100px"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a href="" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-ms btn-danger" ng-click="DeleteCoassureur(coassureur);" style="width:100px"><i class="fa fa-times"> Supprimer</i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                             
+                             <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+                            </div> 
+                          </div>
+                              </div>
+                                </div> 

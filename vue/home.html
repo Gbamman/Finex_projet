@@ -1,0 +1,208 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header-section">
+            <h1>{{menu}}<a href="#/{{nomcourt}}" style="text-decoration: none;">{{sousmenu}}</a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3 col-md-4">
+        <div href="" class="widget"  ng-click="simulation(product);" style="cursor:pointer">
+          <div class="widget-content widget-content-mini text-left clearfix font-weight-pale">
+            <div class="widget-icon pull-right themed-background">
+              <i class="fa fa-diamond text-light-op" aria-hidden="true"></i>
+            </div>
+            <span class="text-muted">EVALUER UNE PRIME</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 col-md-4">
+        <div href="" class="widget" ng-click="open(product);" style="cursor:pointer">
+          <div class="widget-content widget-content-mini text-left clearfix font-weight-pale">
+            <div class="widget-icon pull-right themed-background-success">
+              <i class="fa fa-users text-light-op" aria-hidden="true"></i>
+            </div>
+            <span class="text-muted">NOUVELLE SOUSCRIPTION</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 col-md-4">
+        <div  class="widget"  ng-click="etatProductionAdd(etatProduction);" style="cursor:pointer">
+          <div class="widget-content widget-content-mini text-left clearfix font-weight-pale">
+            <div class="widget-icon pull-right themed-background-danger">
+              <i class="fa fa-bar-chart text-light-op" aria-hidden="true"></i>
+            </div>
+            <span class="text-muted">ETAT EN MICROSOFT EXCEL</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 col-md-4">
+        <div class="widget" style="cursor:pointer;">
+          <a href="Notice/NOTICE CLIENT.pdf" target="_blank" style="text-decoration:none;">
+            <div class="widget-content widget-content-mini text-left clearfix font-weight-pale">
+              <div class="widget-icon pull-right themed-background-info">
+                <i class="fa fa-align-justify text-light-op" aria-hidden="true"></i>
+              </div>
+              <span class="text-muted">INFORMATIONS AUX CLIENTS</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="block-title" style="padding-right:10px;">
+        <div class="pull-right">
+          <small class="text-muted">
+            Voir uniquement mes contrats saisis
+          </small>
+          <label class="csscheckbox csscheckbox-primary">
+            <input type="checkbox" ng-checked="product.userchoice==='OUI'" ng-click="UserChoiceButton(product)" >
+            <span></span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 col-lg-2 col-md-2 mui-textfield--float-label mui-select">
+          Pages
+          <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div class="col-sm-4 col-lg-4 col-md-4  mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+          <label>Filtrer</label>
+        </div>
+        <div class="col-md-4 mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="search" ng-model="critereRecherche">
+          <label>Rechercher des contrats</label>
+        </div>
+        <div class="col-sm-2 col-lg-2 col-md-2">
+          <button  class="btn btn-effect-ripple btn-success"  ng-click="searchContrat(critereRecherche)"style="margin-top:30px !important;">Rechercher</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <br/>
+        <!-- Chart Widget class=""-->
+        <div class="widget">
+          <table id="example-datatable" class="table table-striped table-bordered table-vcenter export-table">
+            <thead>
+              <tr>
+                <!-- {{contratImprimer}} -->
+                <th>
+                  <div ng-click="sort_by('numcontrat');" style="text-decoration:none">
+                    N° de Compte 
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('nom');" style="text-decoration:none">
+                    Nom
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('prenom');" style="text-decoration:none">
+                    Prénom  
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('dateeffet');" style="text-decoration:none">
+                    Date D'effet  
+                    <i class="glyphicon glyphicon-sort"></i>
+                  </a>
+                </th>
+                <th>
+                  <div ng-click="sort_by('capital');" style="text-decoration:none">
+                    Capital
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('duree');" style="text-decoration:none">
+                    Durée
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('primeassurance');" style="text-decoration:none;width: 75px; font-size:.9em">
+                    Prime d'Assurance
+                  </a>
+                </th>
+                <th class="text-center" style="width: 50px;">
+                  statut
+                </th>
+                <th>
+                  <div>
+                    Action
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    Niveau
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-hide="products">
+                <td class="text-center" colspan="11" style="font-size:.7em !important">
+                  <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+                </td>
+              </tr>
+              <tr ng-repeat="product in filtered = (products | filter:search | orderBy :'-idcontrat' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" id ="{{product.idcontrat}}" animate-on-change='product.numcontrat + product.nom + product.prenom + product.dateeffet + product.capital + product.duree + product.primeassurance+ product.datenaissance + product.differe + product.remboursement +product.primeassurance +product.profession + product.reglementprime + product.periodicite + product.sexe'ng-animate=" 'animate'">
+                <!--  
+                <tr ng-repeat="product in products">
+                   -->
+                  <td>
+                    <strong>{{product.numcontrat}}</strong>
+                  </td>
+                  <td>
+                    {{product.nom}}
+                  </td>
+                  <td>
+                    {{product.prenom}}
+                  </td>
+                  <td>
+                    {{product.dateeffet | date: 'shortDate'}}
+                  </td>
+                  <td>
+                    {{product.capital | number}}
+                  </td>
+                  <td>
+                    {{product.duree}}
+                  </td>
+                  <td>
+                    {{product.primeassurance | number}}
+                  </td>
+                  <td>
+                    <button class="btn" ng-class="{SOUSCRIPTION:'btn-success', ANNULATION:'btn-danger'}[product.status]" ng-click="changerStatusContrat(product);" style="width:100px; font-size:.7em">{{product.status}}</button>
+                  </td>
+                  <td class="text-center">
+                    <a href="" data-toggle="tooltip" title="Modifier le contrat" class="btn btn-effect-ripple btn-xs btn-success" ng-click="open(product);"><i class="fa fa-pencil"></i> Modifier</a>
+                    <a data-toggle="tooltip" title="Delete User" alt="product"class="btn btn-effect-ripple btn-xs btn-danger" style="display:none"><i class="fa fa-times"ng-click="effacercontrat(product);"></i></a>
+                    <a data-toggle="tooltip" title="Imprimer le contrat" class="btn btn-effect-ripple btn-xs btn-print" ng-click="setcontrat(product);" ><i class="fa fa-print"></i> Imprimer</a>
+                  </td>
+                  <td class="hidden-sm hidden-xs">
+                    <a  class="{{getNiveauClass(product.niveau)}}">{{getNiveauText(product.niveau)}}</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant" max-size="10"></pagination>
+          </div>
+        </div>
+      </div>
+      <ng:include src="'layout/right.html'"></ng:include>
+      <ng:include src="'layout/left.html'"></ng:include>
+      <!--
+      <ng:include src="'vue/BIA.html'"></ng:include>
+       -->
+      <!--  
+      <div ng-show="contratImprimer.length > 0">
+        <ng:include src="'vue/BIA.php'"></ng:include>

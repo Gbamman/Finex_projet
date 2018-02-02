@@ -1,0 +1,412 @@
+<div id="BIAFICHIER" style="display:none;">
+    <table id="boom">
+        <tr >
+            <td></td>
+            <td colspan="3" style="text-align:center;">
+                <br>
+                COLLECTIF EMPRUNTEUR 
+                <br>
+                <br>
+                BULLETIN INDIVIDUEL D'ADHESION N&deg; 
+            </td>
+            <td style="text-align:right;"></td>
+        </tr>
+        <!-- ligne vide -->
+        <tr class="lg" >
+            <td colspan="5">
+                <br>
+            </td>
+        </tr>
+        <!-- //ligne vide -->
+        <tr class="lg">
+            <td colspan="5"  style="text-align:center;">
+                IDENTIFICATION DE L'ASSURE
+            </td>
+        </tr>
+        <!-- ligne vide -->
+        <!-- //ligne vide -->
+        <tr>
+            <td >
+                NUMERO
+            </td>
+            <td>
+                {{contratImprimer.numcontrat | uppercase}}
+            </td>
+            <td></td>
+            <td >
+                NOM
+            </td>
+            <td>
+                {{contratImprimer.nom | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                STATUT
+            </td>
+            <td>
+                {{contratImprimer.status | uppercase}}
+            </td>
+            <td></td>
+            <td>
+                PRENOMS
+            </td>
+            <td>
+                {{contratImprimer.prenom | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                N&deg; DE COMPTE
+            </td>
+            <td>
+                {{contratImprimer.numcontrat | uppercase}}
+            </td>
+            <td></td>
+            <td>
+                DATE DE NAISSANCE
+            </td>
+            <td>
+                {{contratImprimer.datenaissance  | date: 'shortDate'}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                BANQUE
+            </td>
+            <td>
+                {{contratImprimer.banquelibelle | uppercase}}
+            </td>
+            <td></td>
+            <td>
+                SEXE
+            </td>
+            <td>
+                {{contratImprimer.sexe | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                AGENCE
+            </td>
+            <td>
+                {{contratImprimer.libelleagence | uppercase}}
+            </td>
+            <td></td>
+            <td>
+                PROFESSION
+            </td>
+            <td>
+                {{contratImprimer.profession | uppercase}}
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:center;">
+                CARACTERISTIQUES DU CREDIT
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                CAPITAL
+            </td>
+            <td>
+                {{contratImprimer.capital | number}}FCFA
+            </td>
+            <td></td>
+            <td>
+                REGLEMENT PRIME
+            </td>
+            <td>
+                {{contratImprimer.reglementprime | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                DATE D'EFFET
+            </td>
+            <td>
+                {{contratImprimer.dateeffet | date: 'shortDate'}}
+            </td>
+            <td></td>
+            <td>
+                PERIODICITE
+            </td>
+            <td>
+                {{contratImprimer.periodicite | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                DATE D'ECHEANCE
+            </td>
+            <td>
+                {{contratImprimer.dateecheance | date: 'shortDate'}}
+            </td>
+            <td></td>
+            <td>
+                REMBOURSEMENT
+            </td>
+            <td>
+                {{contratImprimer.remboursement | uppercase}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                DUREE
+            </td>
+            <td>
+                {{contratImprimer.duree}} MOIS
+            </td>
+            <td></td>
+            <td>
+                DIFFERE
+            </td>
+            <td>
+                {{contratImprimer.differe}} MOIS
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>
+                TAUX D'EMPRUNT
+            </td>
+            <td>
+                {{contratImprimer.tauxemprunt}}%
+            </td>
+            <td></td>
+            <td>
+                PERTE EMPLOI
+            </td>
+            <td>
+                {{contratImprimer.perteemploi | uppercase}}
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5" style="text-align:center; ">
+                DECLARATION DE LA PERSONNE A ASSURER
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                Je d&eacute;clare &ecirc;tre assur&eacute;(e) pour le pr&ecirc;t ci-dessus suivant les modalit&eacute; au contrat d'assurancesouscrit par la banque : 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                Je reconnais avoir re&ccedil;u le r&eacute;sum&eacute; des principales dispositions au contrat d'assurance. Je d&eacute;clare sur honneur &ecirc;tre en bonne sant&eacute;, ne pas suivre de traitement m&eacute;dical r&eacute;gulieret exercer une activit&eacute; stable &agrave; plein temps. Je suis inform&eacute; que conform&eacute;ment au code CIMA toute fausse d&eacute;claration entraine la nullit&eacute; du contrat.
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5" style="text-align:center; ">
+                GARANTIE COMPLEMENTAIRE ASSURANCE PERTE EMPLOI
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <!-- ligne vide -->
+        <!-- //ligne vide -->
+        <tr>
+            <td colspan="5">
+                Je souhaite souscrire &agrave; la garantie compl&eacute;mentaire PERTE D'EMPLOI 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                Je d&eacute;clare ce jour &ecirc;tre ag&eacute;(e) de moins de 60 ans, exercer &agrave; titre principal une activit&eacute; salari&eacute;e du secteurpriv&eacute; ou public sous contrat &agrave; dur&eacute;e d&eacute;termin&eacute;e ou indd&eacute;termin&eacute;e depuis plus de 
+                <br/>
+                 six (6) mois chez le m&ecirc;me employeur, n'&ecirc;tre ni en p&eacute;riode d'essai,en pr&eacute;avis de licenciement, ni en chomage technique ou partiel, ni en p&eacute;riode de pr&eacute;-retraite, ni avoir postul&eacute; pour un d&eacute;part 
+                <br/>
+                 n&eacute;goci&eacute;.Par ailleurs, je suis inform&eacute; que le licenciement pour fautes lourdes ou graves, la d&eacute;mission, le d&eacute;part volontaire, l'abandon de poste font partie des exclusionsde la garantie et donc 
+                <br/>
+                 ne donne droit &agrave; aucune indemnisation.
+            </td>
+        </tr>
+        <!-- ligne vide -->
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <!-- //ligne vide -->
+        <tr class="lg">
+            <td colspan="5" style="text-align:center; ">
+                BENEFICIAIRES DES GARANTIES
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <!-- //ligne vide -->
+        <tr>
+            <td colspan="5">
+                <input type="checkbox" checked="checked" />
+                 En cas de d&eacute;c&egrave;s ou d'invalidit&eacute; absolue et d&eacute;finitive jusqu'&agrave; concurence du solde restant du à la date de d&eacute;c&egrave;s. &nbsp;
+                <br/>
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <!-- //ligne vide -->
+        <tr class="lg">
+            <td colspan="5" style="text-align:center;">
+                QUESTIONNAIRE MEDICALE
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                &nbsp;
+            </td>
+        </tr>
+        <!-- //ligne vide -->
+        <tr>
+            <td colspan="5">
+                NB: Veuillez encercler la bonne r&eacute;ponse et apporter des pr&eacute;cisions en cas de r&eacute;ponses positives.
+                <br/>
+                 &nbsp;
+            </td>
+        </tr>
+        <tr ng-repeat="objPrintingQM in printingQM">
+            <td colspan="3">
+                {{objPrintingQM.libelle}}
+            </td>
+            <td >
+                {{objPrintingQM.reponses === "OUI" ? "OUI" : "NON"}}
+            </td>
+            <td>
+                Précision:.................................................
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5"></td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5" style="text-align:center; ">
+                PRIME D'ASSURANCE
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;font-size:12px;">
+                PRIME TTC : {{contratImprimer.primeassurance | number}}FCFA
+            </td>
+            <td style="text-align:left;font-size:12px;"></td>
+            <td></td>
+            <td style="font-size:12px;">
+                TAUX DE PRIME : {{contratImprimer.tauxprimes}}%
+            </td>
+            <td style="font-size:12px;"></td>
+            <td></td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5">
+                <br>
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5" >
+                 Fait &agrave; 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <br>
+            </td>
+        </tr>
+        <tr class="lg">
+            <td>
+                 L'ASSURE
+            </td>
+            <td colspan="3" style="text-align:center;">
+                LE BENEFICIAIRE
+            </td>
+            <td style="text-align:right;">
+                SAHAM ASSURANCE VIE BENIN
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <br>
+            </td>
+        </tr>
+        <tr class="lg">
+            <td colspan="5" style="text-align:right;"></td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <br>
+            </td>
+        </tr>
+        <tr >
+            <td ng-repeat="coassureur in coassureurs" style="padding-left:5px !important;padding-bottom:10px !important">
+                <div>
+                    <img ng-src="typepretFolder/imagecoassureur/{{coassureur.logo}}" alt="Logo Saham ASSURANCE" width="120" height="60"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- 
+<td>
+    <img src="assets/img/sunu.jpg" alt="Logo Saham ASSURANCE" width="134" height="60" />
+</td>
+<td>
+    <img src="assets/img/africaine.jpg" alt="Logo Saham ASSURANCE" width="134" height="60" />
+</td>
+<td>
+    <img src="assets/img/nsia.jpeg" alt="Logo Saham ASSURANCE" width="134" height="60" />
+</td>
+<td>
+    <img src="assets/img/argg.png" alt="Logo Saham ASSURANCE" width="134" height="60" />
+</td>
+ -->

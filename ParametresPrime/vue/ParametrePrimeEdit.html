@@ -1,0 +1,90 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}}</h2>
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="ParametresPrimeForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <form-element mod="parametrePrime">
+                        <select ng-model="parametrePrime.banqueContent"ng-change="TypepretFilter(parametrePrime.banqueContent.id)" id="example-hf-password" name="idbanque" class="form-control dinamique-select"  ng-options="banqueContent as banqueContent.libelle for banqueContent in banques  track by banqueContent.id">
+                            <option value="Sélectionnez une banque">Sélectionnez une banque</option>
+                            <option value="{{banqueContent.libelle}}">{{banqueContent.libelle}}</option>
+                        </select>
+                        <span>Banque</span>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <select ng-model="parametrePrime.typepretobj" id="example-hf-password" name="typepretobj" class="form-control dinamique-select"ng-options="typepretobj as typepretobj.libelle for typepretobj in selectedBanqueTypePret  track by typepretobj.idtypepret">
+                            <option value="{{typepretobj.libelle}}">{{typepretobj.libelle}}</option>
+                        </select>
+                        <span>TYPE DE PRET</span>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="fraisgestion" placeholder="" ng-model="parametrePrime.fraisgestion" class="form-control"  ng-required="true" focus verif-param-prim>
+                        <label>FRAIS DE GESTION </label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="fraisacquisition" placeholder="" ng-model="parametrePrime.fraisacquisition" class="form-control"  ng-required="true" focus verif-param-prim>
+                        <label>FRAIS D'ACQUISITION </label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="capitalmax" placeholder="" ng-model="parametrePrime.capitalmax" class="form-control"  ng-required="true" focus format="number">
+                        <label>CAPITAL MAXIMAL</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="agemaxi" placeholder="" ng-model="parametrePrime.agemaxi" class="form-control"  ng-required="true" focusverif-param-prim>
+                        <label>AGE MAXIMAL</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="agemini" placeholder="" ng-model="parametrePrime.agemini" class="form-control"  ng-required="true" focusverif-param-prim>
+                        <label>AGE MINIMAL</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="tauxprime" placeholder="" ng-model="parametrePrime.tauxprime" class="form-control"  ng-required="true" focus >
+                        <label>TAUX PRIME</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="commission" placeholder="" ng-model="parametrePrime.commission" class="form-control"  ng-required="true" focus >
+                        <label>Taux de Commission</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="quotepartaccessoires" placeholder="" ng-model="parametrePrime.quotepartaccessoires" class="form-control"  ng-required="true" focus >
+                        <label>Quote part Accessoires</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="fraisaperition" placeholder="" ng-model="parametrePrime.fraisaperition" class="form-control"  ng-required="true" focus >
+                        <label>Frais d'Aperition</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="tauxperteemploi" placeholder="" ng-model="parametrePrime.tauxperteemploi" class="form-control"  ng-required="true" focus >
+                        <label>TAUX PERTE EMPLOI</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="accessoires" placeholder="" ng-model="parametrePrime.accessoires" class="form-control"  ng-required="true" focus format="number">
+                        <label>ACCESSOIRES</label>
+                    </form-element>
+                    <form-element mod="parametrePrime">
+                        <input type="text" id="example-hf-password" name="primeplanchet" placeholder="" ng-model="parametrePrime.primeplanchet" class="form-control"  ng-required="true" focus format="number">
+                        <label>PRIME PLANCHET</label>
+                    </form-element>
+                    <div class="form-group">
+                        <div class="modal-footer col-md-12">
+                            <div class="col-sm-4 col-md-offset-1 form-actions">
+                                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Anuuler</button>
+                            </div>
+                            <div class="col-sm-4 form-actions">
+                                <button type="submit"ng-click="saveParametrePrime(parametrePrime);"ng-disabled="TypepretForms.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

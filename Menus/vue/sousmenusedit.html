@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-sm-6 col-lg-3">
+    <a href="" class="widget" ng-click="editMenu(sousmenuall);">
+      <div class="widget-content widget-content-mini text-left clearfix">
+        <div class="widget-icon pull-right themed-background-danger">
+          <i class="fa fa-file-o text-light-op" aria-hidden="true"></i>
+        </div>
+        <span class="text-muted">AJOUTER UN SOUS MENU {{sousmenuall.allsousmenus}}</span>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="block full">
+  <div class="block-title"></div>
+  <div class="row">
+    <div class="col-md-2 mui-textfield--float-label mui-select">
+      Pages
+      <select ng-model="entryLimit" class="form-control">
+        <option>3</option>
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+    <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+      <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+      <label>Filtrer</label>
+    </div>
+    <div class="col-md-3" style="display:none">
+      <h5>
+         {{ filtered.length }} resultats trouves sur l'ensemble des contrats
+      </h5>
+    </div>
+    <div class="col-md-3 " style="display:none">
+      <h5>
+        <i class="fa fa-print"></i>
+      </h5>
+    </div>
+    <div class="col-md-4" style="display:none">
+      <h5>
+        <i class="fa fa-file-pdf-o"></i>
+      </h5>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <br/>
+    <!-- Chart Widget -->
+    <div class="widget">
+      <div class="col-md-9">
+        <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+          <thead>
+            <tr>
+              <th class="text-center">
+                ID
+              </th>
+              <th class="text-center">
+                SOUS MENUS
+              </th>
+              <th class="text-center">
+                ACTION
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="sousmenuall in filtered = (sousmenusAll | filter:search | orderBy :'-idsousmenu' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idsousmenu ="{{sousmenuall.idsousmenu}}">
+              <td>
+                {{sousmenuall.idsousmenu}}
+              </td>
+              <td>
+                {{sousmenuall.libelleSousMenue}} 
+              </td>
+              <td class="text-center">
+                <a href="" data-toggle="tooltip" title="Modifier le sousmenu" class="btn btn-effect-ripple btn-ms btn-success" ng-click="editMenu(sousmenuall);"  style="width:80px"><i class="fa fa-pencil"></i> Edit</a>
+                <a href="" data-toggle="tooltip" title="Surppimer le sousmenu" alt="product"class="btn btn-effect-ripple btn-ms btn-danger" ng-click="deleteMenue(sousmenuall);" style="width:80px"><i class="fa fa-times"></i> Supprimer</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+      </div>
+    </div>
+  </div>

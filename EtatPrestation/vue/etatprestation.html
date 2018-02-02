@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <div class="block-options pull-right">
+        <button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+    </div>
+    <h2 class="modal-title">ETAT DE PRESTATION</h2>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal form-bordered" name="EtattForm" class="form-horizontal"  onsubmit="return false;">
+        <!-- Datepicker for Bootstrap (classes are initialized in js/app.js ->
+         uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
+        <div class="col-md-8 ">
+            <div class="form-group">
+                <div class="progress progress-striped active" ng-show="downloading">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        Téléchargement en cours
+                    </div>
+                </div>
+                <div class="col-xs-12  mui-textfield  mui-textfield--float-label">
+                    <input type="text" id="dateFormat" name="datedebut" placeholder="" ng-model="etatprestation.datedebut"class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" date-prestation valid-date/>
+                    <label>Date de debut</label>
+                </div>
+                <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                    <input type="text" id="dateFormat" name="datefin" placeholder="" ng-model="etatprestation.datefin"class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" date-prestation valid-date/>
+                    <label>Date de fin</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="modal-footer col-md-12">
+                <div class="col-sm-2  form-actions">
+                    <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                </div>
+                <div class="col-sm-2 form-actions">
+                    <button type="submit"ng-click="saveEtatPrestation(etatprestation);"ng-disabled="EtattForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

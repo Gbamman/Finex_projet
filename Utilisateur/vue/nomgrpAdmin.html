@@ -1,0 +1,91 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}}</h2>
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="NomgroupUtilisateursForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-{{taille}}">
+                    <form-element label="" mod="nomgrouputilisateur"class="col-md-{{taille}}">
+                        <input type="text" id="example-hf-password" name="libelle" placeholder="" ng-model="nomgrouputilisateur.libelle" class="form-control" ng-required="true" focus>
+                        <label>GROUPE UTILISATEUR </label>
+                    </form-element>
+                    <form-element label="" mod="nomgrouputilisateur"class="col-md-5" style="display:none">
+                        <input type="text" id="example-hf-password" name="chemin" placeholder="" ng-model="nomgrouputilisateur.chemin" class="form-control">
+                        <label>Nom court par defaut </label>
+                    </form-element>
+                    <div ng-show="nomgrouputilisateur.idnomgroup>0" class="col-md-10">
+                        <table id="general-table" class="table table-striped table-bordered table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th style="width: 80px;" class="text-center"></th>
+                                    <th>
+                                        SOUS MENU
+                                    </th>
+                                    <th>
+                                        DROIT 
+                                    </th>
+                                </tr>
+                            </thead>
+                            <!--  ng-checked="sousmenues.idsousmenu==checkvalue nomgrouputilisateur.valueCheck === 'YES' &amp;&amp; sousmenues.idsousmenu===nomgrouputilisateur.valueComper" -->
+                            <tbody>
+                                <tr ng-repeat-start="(allsousmenus, value) in (nomgrouputilisateur.sousMenusUsers  | groupBy:'allsousmenus')"  style='background-color:#FBF9F5 !important'>
+                                    <td colspan="3">
+                                        MENU - {{allsousmenus}}
+                                    </td>
+                                </tr>
+                                <tr ng-repeat-end ng-repeat="sousmenues in value"  style='background-color:#fff !important'>
+                                    <td class="text-center">
+                                        <label class="csscheckbox csscheckbox-primary">
+                                            <input type="checkbox" ng-checked="sousmenues.etat==='1'" ng-click="Affectation(sousmenues)" >
+                                            <span></span>
+                                        </label>
+                                        <!-- 
+                                        <input type="checkbox" ng-checked='Estaffecte(sousmenues.idsousmenu)'>
+                                        <span></span>
+                                    </label>
+                                     -->
+                                    <!-- actionMenue 
+                                    <input  type="text" value="{{Estaffecte(sousmenues.idsousmenu)}} {{sousmenues.idsousmenu}}" >
+                                </td>
+                                 -->
+                                <td>
+                                    {{sousmenues.libelleSousMenue}}
+                                </td>
+                                <td>
+                                    <select class="form-control"  ng-model="sousmenues.actionMenue"name="actionMenue"ng-change='AffectationDroit(sousmenues)'>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="modification">Modification </option>
+                                        <option value="ecriture">Ecriture</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <div class="modal-footer col-md-10">
+                        <div class="col-sm-offset-{{pas}}">
+                            <div class="col-sm-3">
+                                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit"ng-click="saveNomgrp(nomgrouputilisateur);"ng-disabled="NomgroupUtilisateursForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                            </div>
+                            <div class="col-sm-5" ng-show="nomgrouputilisateur.idnomgroup>0">
+                                <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Terminer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>

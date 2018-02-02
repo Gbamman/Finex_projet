@@ -1,0 +1,47 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}}</h2>
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="sousmenuallForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form-element label="" mod="sousmenuall">
+                        <select  ng-model="sousmenuall.allmenus" id="example-hf-password" name="allmenus" class="form-control dinamique-select"  ng-options="allmenus as allmenus.libelle for allmenus in menusAll  track by allmenus.idmenue">
+                            <option value="{{allmenus.idmenue}}">{{allmenus.libelle}}</option>
+                        </select>
+                        <span>MENUS </span>
+                    </form-element>
+                    <form-element label="" mod="sousmenuall">
+                        <input type="text" id="example-hf-password" name="libelleSousMenue" placeholder=""ng-model="sousmenuall.libelleSousMenue" class="form-control"  ng-required="true" focus>
+                        <label>SOUS MENU</label>
+                    </form-element>
+                    <form-element label="" mod="sousmenuall">
+                        <input type="text" id="example-hf-password" name="nomcourt" placeholder=""ng-model="sousmenuall.nomcourt" class="form-control"  ng-required="true" focus>
+                        <label>NOM COURT</label>
+                    </form-element>
+                    <div class="form-group">
+                        <div class="modal-footer col-md-12">
+                            <div class="col-sm-4 col-md-offset-2 form-actions">
+                                <form-element>
+                                    <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Anuuler</button>
+                                </form-element>
+                            </div>
+                            <div class="col-sm-4 form-actions">
+                                <form-element>
+                                    <button type="submit"ng-click="saveMenus(sousmenuall);"ng-disabled="sousmenuallForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                                </form-element>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

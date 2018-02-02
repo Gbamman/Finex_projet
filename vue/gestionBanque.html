@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-sm-6 col-lg-3">
+    <a href="" class="widget" ng-click="saveBanque(banque);">
+      <div class="widget-content widget-content-mini text-left clearfix">
+        <div class="widget-icon pull-right themed-background-info">
+          <i class="fa fa-eur text-light-op"  aria-hidden="true"></i>
+        </div>
+        <span class="text-muted">AJOUTER UNE BANQUE</span>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="block full">
+  <div class="block-title"></div>
+  <div class="row">
+    <div class="col-md-2 mui-textfield--float-label mui-select">
+      Pages
+      <select ng-model="entryLimit" class="form-control">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+    <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+      <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+      <label>Filtrer</label>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <br/>
+    <div class="widget">
+      <div class="col-md-7">
+        <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+          <thead>
+            <tr>
+              <th class="text-center">
+                ID
+              </th>
+              <th class="text-center">
+                BANQUES
+              </th>
+              <th class="text-center">
+                LOGOS
+              </th>
+              <th class="text-center">
+                STATUS
+              </th>
+              <th class="text-center">
+                ACTION
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-hide="banques">
+              <td class="text-center" colspan="5" style="font-size:.7em !important">
+                <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+              </td>
+            </tr>
+            <tr ng-repeat="banque in filtered = (banques | filter:search | orderBy :'-id' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" id ="{{banque.id}}">
+              <td class="text-center">
+                {{banque.id}}
+              </td>
+              <td>
+                {{banque.libelle}}
+              </td>
+              <td class="text-center">
+                <div class="banqueImage">
+                  <img ng-src="Banque/imagesBanque/{{banque.logo}}" style="width:100px !important; height:40px !important">
+                </div>
+                <!-- 
+                <div class="banqueImage">
+                  <img ng-src="{{ImageBanque}}" style="width:100px !important; height:40px !important">
+                </div>
+                 -->
+              </td>
+              <td>
+                <button class="btn" ng-class="{Actif:'btn-success', Inactif:'btn-danger'}[banque.etat]" style="width:90px; font-size:.8em"  ng-click="changerEtatBanque(banque);">{{banque.etat}}</button>
+              </td>
+              <td class="text-center">
+                <a href="" data-toggle="tooltip" title="Modifier le contrat" class="btn btn-effect-ripple btn-ms btn-success" ng-click="saveBanque(banque);"  style="width:100px"><i class="fa fa-pencil"></i> Edit</a>
+                <a href="" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-ms btn-danger" ng-click="banqueDelete(banque);" style="width:100px"><i class="fa fa-times"> Supprimer</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+      </div>
+    </div>
+  </div>
+</div>

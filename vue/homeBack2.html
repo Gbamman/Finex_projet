@@ -1,0 +1,148 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header-section">
+            <h1>{{menu}}<a href="#/{{nomcourt}}" style="text-decoration: none">{{sousmenu}}</a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="row">
+        <div class="col-sm-2 col-lg-2 col-md-2 mui-textfield--float-label mui-select">
+          Pages
+          <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div class="col-sm-4 col-lg-4 col-md-4  mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+          <label>Filtrer</label>
+        </div>
+        <div class="col-md-4 mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="search" ng-model="critereRecherche">
+          <label>Rechercher des contrats</label>
+        </div>
+        <div class="col-sm-2 col-lg-2 col-md-2">
+          <button  class="btn btn-effect-ripple btn-success"  ng-click="searchContrat(critereRecherche)"style="margin-top:30px !important;">Rechercher</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <br/>
+        <!-- Chart Widget class=""-->
+        <div class="widget">
+          <table id="example-datatable" class="table table-striped table-bordered table-vcenter export-table">
+            <thead>
+              <tr>
+                <!-- {{contratImprimer}} -->
+                <th>
+                  <div ng-click="sort_by('numcontrat');" style="text-decoration:none">
+                    N° de Compte 
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('nom');" style="text-decoration:none">
+                    Nom
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('prenom');" style="text-decoration:none">
+                    Prénom  
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('dateeffet');" style="text-decoration:none">
+                    Date D'effet  
+                    <i class="glyphicon glyphicon-sort"></i>
+                  </a>
+                </th>
+                <th>
+                  <div ng-click="sort_by('capital');" style="text-decoration:none">
+                    Capital
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('duree');" style="text-decoration:none">
+                    Durée
+                  </div>
+                </th>
+                <th>
+                  <div ng-click="sort_by('primeassurance');" style="text-decoration:none;width: 75px; font-size:.9em">
+                    Prime d'Assurance
+                  </a>
+                </th>
+                <th class="text-center" style="width: 50px;">
+                  Mise en place
+                </th>
+                <th class="text-center" style="width: 75px;">
+                  Contrat réglé
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-hide="products">
+                <td class="text-center" colspan="11" style="font-size:.7em !important">
+                  <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+                </td>
+              </tr>
+              <tr ng-repeat="product in filtered = (products | filter:search | orderBy :'-idcontrat' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" id ="{{product.idcontrat}}" animate-on-change='product.numcontrat + product.nom + product.prenom + product.dateeffet + product.capital + product.duree + product.primeassurance+ product.datenaissance + product.differe + product.remboursement +product.primeassurance +product.profession + product.reglementprime + product.periodicite + product.sexe'ng-animate=" 'animate'">
+                <!--  
+                <tr ng-repeat="product in products">
+                   -->
+                  <td>
+                    <strong>{{product.numcontrat}}</strong>
+                  </td>
+                  <td>
+                    {{product.nom}}
+                  </td>
+                  <td>
+                    {{product.prenom}}
+                  </td>
+                  <td>
+                    {{product.dateeffet | date: 'shortDate'}}
+                  </td>
+                  <td>
+                    {{product.capital | number}}
+                  </td>
+                  <td>
+                    {{product.duree}}
+                  </td>
+                  <td>
+                    {{product.primeassurance | number}}
+                  </td>
+                  <td>
+                    <button class="btn" ng-class="{PROPOSITION:'btn-info',Alerte:'btn-warning',Rejet:'btn-danger', OUI:'btn-neutre'}[product.niveauTextPlace]" ng-click="changerNiveauContratPlace(product);" style="width:100px; font-size:.7em">
+                      {{product.niveauTextPlace=(product.niveau 
+                      <=3)? getNiveauTextPlace(product.niveau):(product.niveau >
+                       3)? 'OUI' :''}}
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn" ng-class="{VALIDATION:'btn-validation', REGLE:'btn-regle',PROPOSITION:'btn-info',OUI:'btn-neutre'}[product.niveauText]" ng-click="changerNiveauContrat(product);" style="width:100px; font-size:.7em">
+                      {{product.niveauText= (product.niveau===4) ? "VALIDATION":(product.niveau >
+                       4)? 'OUI' : ''}}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant" max-size="10"></pagination>
+          </div>
+        </div>
+      </div>
+      <ng:include src="'layout/right.html'"></ng:include>
+      <ng:include src="'layout/left.html'"></ng:include>
+      <!--
+      <ng:include src="'vue/BIA.html'"></ng:include>
+       -->
+      <!--  
+      <div ng-show="contratImprimer.length > 0">
+        <ng:include src="'vue/BIA.php'"></ng:include>

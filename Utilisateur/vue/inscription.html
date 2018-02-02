@@ -1,0 +1,188 @@
+<div id="login-container" class="UsersRegisterClass">
+    <!-- Register Header -->
+    <h1 class="h2 text-light text-center push-top-bottom animation-slideDown" style="display:none">
+        <i class="fa fa-cube text-light-op"></i>
+         Finex
+        <strong>PRET</strong>
+    </h1>
+    <div class="block animation-fadeInQuickInv">
+        <!-- Register Title -->
+        <div class="block-title">
+            <div class="block-options pull-right">
+                <button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+            </div>
+            <h2>Inscription</h2>
+        </div>
+        <form name="InscriptionForm" class="form-horizontal" role="form" id="form-register" onsubmit="return false;">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="text" name="pseudo" ng-model="utilisateur.pseudo" class="form-control" ng-minlength="3"  ng-required="true" focus capitalize>
+                        <label>Votre Identifiant <b class="text-danger">*</b></label>
+                        <div ng-messages="InscriptionForm.pseudo.$error" class="ErreurMessage">
+                            <small ng-message="minlength" class="text-warning">
+                                Ce champs doit comporter plus 3 caractere.
+                            </small>
+                            <small ng-message="maxlength" class="text-info">
+                                Pseudo trop long
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="text" name="name" ng-model="utilisateur.name" class="form-control" ng-minlength="3" ng-required="true" focus capitalize>
+                        <label>Votre nom <b class="text-danger">*</b></label>
+                        <div ng-messages="InscriptionForm.name.$error" class="ErreurMessage">
+                            <small ng-message="minlength" class="text-warning">
+                                Ce champs doit comporter plus de 3 caractere.
+                            </small>
+                            <small ng-message="maxlength" class="text-info">
+                                Nom de l'utilisateur trop long
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+                        <select  id="register-username" ng-model="utilisateur.idbanque" ng-change="AgenceId(utilisateur.idbanque.id)"id="example-hf-password" name="idbanque" class="form-control dinamique-select"  ng-options="idbanque as idbanque.libelle for idbanque in banques track by idbanque.id">
+                            <option value="{{idbanque.id}}"></option>
+                        </select>
+                        <span>Banque</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+                        <select  id="register-username" ng-model="utilisateur.droit" name="droit" class="form-control">
+                            <option value="agence">Données Agence</option>
+                            <option value="banque">Données Banque</option>
+                        </select>
+                        <span>Privileges</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" style="visibility:hidden">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="text" id="register-username" name="name" ng-model="utilisateur.surname" class="form-control" ng-minlength="3" ng-required="true" focus>
+                        <label>Votre nom  <b class="text-danger">*</b></label>
+                        <div ng-messages="InscriptionForm.surname.$error" class="ErreurMessage">
+                            <small ng-message="minlength" class="text-warning">
+                                Ce champs doit comporter plus 3 caractere.
+                            </small>
+                            <small ng-message="maxlength" class="text-info">
+                                Prenom de l'utilisateur trop long
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="text" id="register-username" name="surname" ng-model="utilisateur.surname" class="form-control" ng-minlength="3" ng-required="true" focus capitalize>
+                        <label>Votre prenom  <b class="text-danger">*</b></label>
+                        <div ng-messages="InscriptionForm.surname.$error" class="ErreurMessage">
+                            <small ng-message="minlength" class="text-warning">
+                                Ce champs doit comporter plus 3 caractere.
+                            </small>
+                            <small ng-message="maxlength" class="text-info">
+                                Prenom de l'utilisateur trop long
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+                        <select ng-model="utilisateur.idagence"id="example-hf-password" name="idagence" placeholder="" class="form-control"ng-options="idagence as idagence.libelle for idagence in agences  track by idagence.idagence">
+                            <option value="{{idagence.libelle}}">{{idagence.libelle}}</option>
+                        </select>
+                        <span>Agence principale <b class="text-danger">*</b></span>
+                    </div>
+                </div>
+                <div class="form-group" style="visibility:hidden !important">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label mui-select">
+                        <!--  
+                        <select  id="register-username" ng-model="" name="action" class="form-control">
+                            <option value="consultation">Consultation</option>
+                            <option value="modification">Modification</option>
+                            <option value="ecriture">Ecriture</option>
+                        </select>
+                        <span>Action</span>
+                         -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <h4>Votre sexe </h4>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="input-group ">
+                            <span class="input-group-addonh"><i class="fa fa-male fa-fw"></i></span>
+                            <label class="csscheckbox csscheckbox-primary" data-toggle="tooltip" title="Agree to the terms">
+                                <input type="radio" id="register-terms" name="sexe" value="M" ng-model="utilisateur.sexe" class="">
+                                <span></span>
+                                  Masculin
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-addonh"><i class="fa fa-female fa-fw"></i></span>
+                            <label class="csscheckbox csscheckbox-primary" data-toggle="tooltip" title="Agree to the terms">
+                                <input type="radio" id="register-terms" name="sexe" value="F" ng-model="utilisateur.sexe" class="">
+                                <span></span>
+                                 Feminin
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="tel" id="register-password" name="phone" class="form-control " placeholder="" ng-model="utilisateur.phone"  ng-required="true"  ng-maxlength="8" maxlength="8" focus only-numbers >
+                        <label>Votre Numero de telephone</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="email" id="register-email" name="email" ng-model="utilisateur.email" class="form-control" ng-minlength="10" ng-maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                        <label>Votre E-mail</label>
+                        <div ng-messages="InscriptionForm.email.$error.pattern" class="ErreurMessage"  role="alert">
+                            <small ng-message="pattern" class="text-info">
+                                Votre numero de telephne doit contenir au maximum 8 chiffres.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield  mui-textfield--float-label">
+                        <input type="text" id="register-password" name="register-fonction" class="form-control" placeholder="" ng-model="utilisateur.fonction" ng-required="true" focus>
+                        <label>Votre fonction</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 mui-textfield mui-textfield--float-label mui-select">
+                        <select id="example-hf-password" ng-model="utilisateur.idnomgroup"name="profile"  id="example-hf-password" class="form-control dinamique-select"  ng-options="idnomgroup as idnomgroup.libelle for idnomgroup in nomgroups track by idnomgroup.idnomgroup">
+                            <option value="{{idnomgroup.idnomgroup}}">{{"idnomgroup.libelle"}}</option>
+                        </select>
+                        <span>Profil</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <!-- 
+                    <div ng-show="utilisateur.uid>0" class="col-xs-2 form-actions"></div>
+                     -->
+                    <div class="col-xs-2 form-actions col-sm-offset-4">
+                        <button type="submit" class="btn btn-effect-ripple btn-success" ng-click="Enregistrement(utilisateur);"ng-disabled="InscriptionForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="fa fa-plus"></i> {{buttonText}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

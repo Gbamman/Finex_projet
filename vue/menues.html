@@ -1,0 +1,315 @@
+<ng:include src="'partials/right.html'"></ng:include>
+<ng:include src="'partials/left.html'"></ng:include>
+<div id="main-container" style="min-height:600px;">
+    <ng:include src="'partials/header.html'"></ng:include>
+    <!-- END Header -->
+    <!-- Page content -->
+    <div id="page-content"style="min-height:600px;">
+        <!-- First Row -->
+        <div class="row"style="min-height:600px;">
+            <div class="content-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="header-section">
+                            <h1>{{menu}}</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 hidden-xs">
+                        <div class="header-section">
+                            <ul class="breadcrumb breadcrumb-top">
+                                <li>User Interface</li>
+                                <li>Forms</li>
+                                <li><a href="">Components</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Forms Components Header -->
+            <!-- Form Components Row -->
+            <div class="container">
+                <div class="row" >
+                    <!-- Horizontal Form Block -->
+                    <div class="block">
+                        <!-- Horizontal Form Title -->
+                        <div class="block-title">
+                            <div class="block-options pull-right">
+                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Borderless</a>
+                            </div>
+                            <h2>IDENTIFICATION DE L'ADRESSE</h2>
+                        </div>
+                        <!-- END Horizontal Form Title -->
+                        <!-- Horizontal Form Content -->
+                        <form  name="contratForm" action="" method="" class="form-horizontal form-bordered" onsubmit="return false;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome" style="border-bottom:none;">
+                                            <label class="col-md-4 control-label" for="example-hf-email">N° de compte</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-email" name="numcontrat" ng-model="contrat.numcontrat" class="form-control">
+                                                <!-- 
+                                                <span class="help-block">Please enter your email</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="swichvalue" value="contrats" ng-model="contat.swichvalue">
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Numero</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="numeropret" ng-model="contrat.numeropret"class="form-control">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Statut</label>
+                                            <div class="col-md-8">
+                                                <select id="example-hf-password" name="statut" ng-model="statut" class="form-control">
+                                                    <option>Soucription</option>
+                                                    <option>Annulation</option>
+                                                </select>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Banque</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="idbanque" class="form-control" ng-model="contrat.idbanque" value="1" placeholder="SGB" disabled>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Agence</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="idagence" ng-model="contrat.idagence" class="form-control" value="2" placeholder="Agence principale">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-email">Nom</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-email" name="nom" ng-model="contrat.nom" class="form-control">
+                                                <!-- 
+                                                <span class="help-block">Please enter your email</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Prénom</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="prenom" class="form-control" ng-model="contrat.prenom">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Date de naissance</label>
+                                            <div class="col-md-8">
+                                                <input type="date" id="example-hf-password" name="datenaissance" ng-model="contrat.datenaissance" class="form-control"uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">sexe</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="sexe" ng-model="contrat.sexe" class="form-control" placeholder="M ou F">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Profession</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="profession" ng-model="contrat.profession" class="form-control">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block" style="border-bottom:none;">
+                                <div class="block-title">
+                                    <div class="block-options pull-right">
+                                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Borderless</a>
+                                    </div>
+                                    <h2>CARACTERISTIQUE DU CREDIT</h2>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome" style="border-bottom:none;">
+                                            <label class="col-md-4 control-label" for="example-hf-email">Capital</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-email" name="capital" class="form-control" ng-model"contrat.capital">
+                                                <!-- 
+                                                <span class="help-block">Please enter your email</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Date d'effet</label>
+                                            <div class="col-md-8">
+                                                <input type="date" id="example-hf-password" name="dateeffet" ng-model="dateeffet" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Durée</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="duree" ng-model="contrat.duree" class="form-control">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Date d'écheance</label>
+                                            <div class="col-md-8">
+                                                <input type="date" id="example-hf-password" name="dateecheance" ng-model="dateecheance" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Taux d'enprunt</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="tauxemprunt" ng-model="contrat.tauxemprunt" class="form-control">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Reglement des primes</label>
+                                            <div class="col-md-8">
+                                                <select id="example-hf-password" name="reglementprime" ng-model="contrat.reglementprime" class="form-control" disabled>
+                                                    <option value="unique">Unique</option>
+                                                    <option value="annulation">Annulation</option>
+                                                </select>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Periodicite de crédit</label>
+                                            <div class="col-md-8">
+                                                <select id="example-hf-password" name="periodicite" ng-model="contrat.periodicite" class="form-control">
+                                                    <option value="mensuelle">Mensuelle</option>
+                                                    <option value="bimestrille">Bimestrielle</option>
+                                                    <option value="trimestrielle">Trimestrielle</option>
+                                                    <option value="semestrielle">Semestrille</option>
+                                                    <option value="annuelle">Annuelle</option>
+                                                </select>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Differé</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="example-hf-password" name="differe" ng-model="contrat.differe" class="form-control" value="0">
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Perte d'emploi</label>
+                                            <div class="col-md-8">
+                                                <select id="example-hf-password" name="perteemploi" ng-model="contrat.perteemploi" class="form-control">
+                                                    <option value="oui">Oui</option>
+                                                    <option value="non">Non</option>
+                                                </select>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-password">Remboursement</label>
+                                            <div class="col-md-8">
+                                                <select id="example-hf-password" name="remboursement" ng-model="contrat.remboursement" class="form-control" >
+                                                    <option value="periodique">Périodique</option>
+                                                    <option value="a terme">A terme</option>
+                                                </select>
+                                                <!--  
+                                                <span class="help-block">Please enter your password</span>
+                                                -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block" style="border-bottom:none;">
+                                <div class="block-title">
+                                    <div class="block-options pull-right">
+                                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Borderless</a>
+                                    </div>
+                                    <h2>PRIME</h2>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome" style="border-bottom:none;">
+                                            <label class="col-md-4 control-label" for="example-hf-email">Taux de prime</label>
+                                            <div class="col-md-8">
+                                                <input type="email" id="example-hf-email" name="tauxprimes" ng-prime="contrat.tauxprimes" class="form-control" disabled>
+                                                <!-- 
+                                                <span class="help-block">Please enter your email</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group contratfrome">
+                                            <label class="col-md-4 control-label" for="example-hf-email">Prime Assurance</label>
+                                            <div class="col-md-8">
+                                                <input type="email" id="example-hf-email" name="primeassurance" ng-model="contrat.primeassurance" class="form-control" disabled>
+                                                <!-- 
+                                                <span class="help-block">Please enter your email</span>
+                                                 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="col-md-3 col-md-offset-9">
+                                    <button type="submit" class="btn btn-effect-ripple btn-primary" ng-click="enregistrement(contrat);">Enregister</button>
+                                    <button type="reset" class="btn btn-effect-ripple btn-danger">Anuuler</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END Horizontal Form Content -->
+                    </div>
+                </div>
+                <!-- END Horizontal Form Block -->
+            </div>
+        </div>
+    </div>
+</div>

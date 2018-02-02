@@ -1,0 +1,1301 @@
+<?phpsession_start();require_once '../api/config.php';require_once '../api/v1/dbHelper.php';require_once '../api/v1/educplusPdf.php';//$dataJsonDecode = $_POST['contrat'];ob_start();?>
+<style type="text/css">
+    <!-- table
+    {
+        border-collapse:collapse;
+    }
+
+    .banqueLogo img
+    {
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+
+    .main
+    {
+        border-top:1px solid black;
+        border-right:1px solid black;
+        border-left:1px solid black;
+        border-bottom:1px solid black;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 600px;
+    }
+
+    table  .first  td
+    {
+        border-bottom:1px solid black;
+    }
+
+    table  .lg  td
+    {
+        border-bottom:1px solid black;
+    }
+
+    tabletd .case
+    {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        border-left:1px solid #000;
+        display:inline;
+        margin-left:5px;
+    margin-right:5px}
+
+</style>
+<page backtop="5mm" backbottom="5mm" backleft="1mm"style="font-size: 8.5px">
+    <div class="main">
+        <table >
+            <tr>
+                <td colspan="4" style="text-align:center;padding-left:200px;">
+                    <br>
+                    <h6></h6>
+                    <h5>
+                        <?php echo $responseContrat[0]['intitulecompte']; ?>
+                    </h5>
+                </td>
+                <td colspan="2" style="text-align:center;">
+                    <img src="../Banque/imagesBanque/<?php echo $responseContrat[0]['logo']; ?>" alt="Logo BANQUE" width="120" height="75" style="margin-top:10px;"/>
+                </td>
+            </tr>
+            <!-- ligne vide -->
+            <tr class="lg" >
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <!-- //ligne vide -->
+            <tr class="lg">
+                <td colspan="5"  style="text-align:left;">
+                    SOUSCRIPTEUR
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case" style="width:20px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo $responseContrat[0]['civilite']?>
+                    </div>
+                    <?php echo  $responseContrat[0]['nom'].' '.$responseContrat[0]['prenom'];?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    Nom de jeune fille: ----------------------------------------------------------------
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    BOITE POSTALE: 
+                    <div class="case" style="width:50px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo $responseContrat[0]['boitepostal'];?>
+                    </div>
+                </td>
+                <td>
+                    Ville : 
+                    <div class="case" style="width:50px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        Cotonou
+                    </div>
+                </td>
+                <td >
+                    TEL : 
+                    <div class="case" style="width:50px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo $responseContrat[0]['telephone'];?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    N° Acte de Naissance ou jugement Suppletif 
+                    <div class="case" style="width:50px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo  $responseContrat[0]['numpiece'];?>
+                    </div>
+                </td>
+                <td>
+                    DATE DE NAISSANCE : 
+                    <?php echo dateUS2FR($responseContrat[0]['datenaissance']); ?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email  
+                    <div class="case" style="width:100px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo $responseContrat[0]['email']; ?>
+                    </div>
+                </td>
+                <td>
+                    Nationalite 
+                    <div class="case" style="width:50px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        Beninoise
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Preofession du souscripteur
+                </td>
+                <td colspan="3">
+                    <?php if(isset($responseContrat[0]['profession'])) echo $responseContrat[0]['profession'];else echo '';?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Description de l'activite ou structure de l'emploi
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    PERSONNE A ASSURER
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <?php echo $responseContrat[0]['civilite'].'  '.$responseContrat[0]['nom'].' '.$responseContrat[0]['prenom'];?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    Nom de jeune fille  ------------------------------------
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    BOITE POSTALE: 
+                    <?php echo $responseContrat[0]['boitepostal'];?>
+                </td>
+                <td style="text-align:center">
+                    Ville :Cotonou
+                </td>
+                <td>
+                    TEL : 
+                    <?php echo $responseContrat[0]['telephone'];?>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    N° Acte de Naissance ou jugement Suppletif
+                </td>
+                <td>
+                    <?php echo  $responseContrat[0]['numpiece'];?>
+                </td>
+                <td></td>
+                <td>
+                    Email
+                </td>
+                <td>
+                    <?php echo $responseContrat[0]['email']; ?>
+                </td>
+            </tr>
+            <!-- 
+            <div style="width:500px;height:100px;border:1px solid #000;">
+                This is a rectangle!
+            </div>
+             -->
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    DATE DE NAISSANCE
+                </td>
+                <td>
+                    <?php echo dateUS2FR($responseContrat[0]['datenaissance']); ?>
+                </td>
+                <td></td>
+                <td>
+                    Nationalite
+                </td>
+                <td>
+                    Beninoise
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Description de l'activite ou structure de l'emploi
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    BENEFICIAIRES DES GARANTIES SOUSCRITES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                     Du capital, l'assuré etant en vie
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="case" style="width:10px;height:10px;"></div>
+                     Souscripteur 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                     L'assuré(e)
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                     Autre personne
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                     Le conjoint , à défaut les enfants nés et à naîttre, à défaut les héritiers de l'assuré(e).
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                     Autre personne : 
+                    <?php echo $responseContrat[0]['civilite'].'  '.$responseContrat[0]['nom1'].' '.$responseContrat[0]['prenom1'];?>
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    NATURES DES GARANTIES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width:60px;display:inline;margin-left:5px;">
+                         Rente en cas de deces
+                    </div>
+                    25% 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    50% 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    75% 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    100% 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    Montant
+                    <div class="case" style="width:60px;height:10px;display:inline;">
+                        <?php echo $responseContrat[0]['renteannuelle']?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width:60px;height:10p;display:inline;margin-left:5px;">
+                        Rente en cas de vie (*)
+                    </div>
+                    <div class="case" style="width:100px;height:10px;display:inline;"></div>
+                     FCFA
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width:50px;height:10px;display:inline;">
+                        Date d'effet
+                    </div>
+                    <div class="case" style="width:50px;height:10px;display:inline;"></div>
+                </td>
+                <td>
+                    <div style="width:50px;height:10px;display:inline;">
+                        Duree de differe
+                    </div>
+                    <div class="case" style="width:50px;height:10px;display:inline;"></div>
+                </td>
+                <td>
+                    <div style="width:50px;height:10px;display:inline;">
+                        Duree Totale 
+                        <br>
+                         (Rente+Differe)
+                    </div>
+                    <div class="case" style="width:50px;height:10px;display:inline;"></div>
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    PRIMES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    Le prélèvement des prime sera : annuel
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    semestriel 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    trimestiel 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    mensuel 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                    unique 
+                    <div class="case" style="width:10px;height:10px;display:inline;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Montant prime fractionnée(*): 
+                    <div class="case" style="width:200px;height:10px;display:inline;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    (*) Montant susceptible de majoration après analyse de la présente proposition 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Je soussigné (e) 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    demande &agrave; SAHAM ASSURANCE VIE, l'etablissement des conditions particulières du contrat.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fait &agrave; 
+                    <div style="width:100px;display:inline;margin-left:5px;margin-right:5px"></div>
+                     Le
+                    <div style="width:100px;display:inline;margin-left:5px;margin-right:5px"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     Le souscripteur.
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    L'assuree
+                </td>
+                <td style="text-align:right;">
+                    Le realisateur
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                    <br>
+                    <br>
+                </td>
+            </tr>
+            <tr class="lg"></tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</page>
+<page_footer style="padding-left:20% !important; text-align:center;">
+    <?php foreach ($coassureurList as $key =>
+     $value) {echo ' 
+    <img src="../typepretFolder/imagecoassureur/'.$value['logo'].'" alt="Logo Saham ASSURANCE" width="134" height="60" style="margin-left:20px !important" />
+    ';} ?>
+</page_footer>
+<?php$content=ob_get_clean();require('../html2pdf_v4.03/html2pdf.class.php');try{$pdf= new HTML2PDF('P','A4','fr');$pdf->
+writeHTML($content);if (ob_get_contents()) ob_end_clean();$pdfr=$pdf->
+Output('BIA.pdf');echo  $pdfr;}catch(HTML2PDF_exception $e) {echo $e;exit;}?>
+<!--  -->
+<?phpsession_start();require_once '../api/config.php';require_once '../api/v1/dbHelper.php';require_once '../api/v1/educplusPdf.php';//$dataJsonDecode = $_POST['contrat'];ob_start();?>
+<style type="text/css">
+    <!-- table
+    {
+        border-collapse:collapse;
+    }
+
+    .banqueLogo img
+    {
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+
+    .main
+    {
+        border-top:1px solid black;
+        border-right:1px solid black;
+        border-left:1px solid black;
+        border-bottom:1px solid black;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 600px;
+    }
+
+    table  .first  td
+    {
+        border-bottom:1px solid black;
+    }
+
+    table  .lg  td
+    {
+        border-bottom:1px solid black;
+    }
+
+    tabletd .case
+    {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        border-left:1px solid #000;
+    }
+
+    tabletd .case50
+    {
+        width:50px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case60
+    {
+        width:60px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case20
+    {
+        width:20px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case10
+    {
+        width:10px;
+        height:10px;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case80
+    {
+        width:80px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case100
+    {
+        width:100px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case200
+    {
+        width:200px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .case400
+    {
+        width:400px;
+        height:10px;
+        text-align:center;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        font-weight: bold;
+    }
+
+    tabletd .casecoche
+    {
+        width:10px;
+        height:10px;
+        display:inline;
+        margin-left:5px;
+        margin-right:5px;
+        background: #000;
+    }
+
+</style>
+<page backtop="5mm" backbottom="5mm" backleft="1mm"style="font-size: 8.5px">
+    <div class="main">
+        <table >
+            <tr>
+                <td colspan="2" style="text-align:left;">
+                    <?php foreach ($coassureurList as $key =>
+                     $value) {echo '
+                    <img src="../typepretFolder/imagecoassureur/'.$value['logo'].'" alt="Logo Saham ASSURANCE" width="120" height="70" style="margin-top:10px;"/>
+                    ';} ?>
+                </td>
+                <td colspan="4" style="text-align:center;">
+                    <br>
+                    <h6></h6>
+                    <h5>
+                        <?php echo $responseContrat[0]['intitulecompte']; ?>
+                    </h5>
+                </td>
+            </tr>
+            <!-- ligne vide -->
+            <tr class="lg" >
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <!-- //ligne vide -->
+            <tr class="lg">
+                <td colspan="5"  style="text-align:left;">
+                    SOUSCRIPTEUR
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case10">
+                        <?php echo $responseContrat[0]['civilite']?>
+                    </div>
+                    <?php echo  $responseContrat[0]['nom'].' '.$responseContrat[0]['prenom'];?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    Nom de jeune fille: ----------------------------------------------------------------
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    BOITE POSTALE: 
+                    <div class="case10">
+                        <?php echo $responseContrat[0]['boitepostal'];?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    Ville : 
+                    <div class="case10">
+                        Cotonou
+                    </div>
+                </td>
+                <td>
+                    TEL : 
+                    <div class="case60" style="width:60px;height:10px;display:inline;margin-left:5px;text-align:center">
+                        <?php echo $responseContrat[0]['telephone'];?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    N° Acte de Naissance ou jugement Suppletif 
+                    <div class="case50">
+                        <?php echo  $responseContrat[0]['numpiece'];?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    DATE DE NAISSANCE : 
+                    <div class="case50">
+                        <?php echo dateUS2FR($responseContrat[0]['datenaissance']); ?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email  
+                    <div class="case100">
+                        <?php echo $responseContrat[0]['email']; ?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    Nationalite 
+                    <div class="case50">
+                        Beninoise
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Preofession du souscripteur
+                </td>
+                <td colspan="3">
+                    <?php if(isset($responseContrat[0]['profession'])) echo $responseContrat[0]['profession'];else echo '';?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Description de l'activite ou structure de l'emploi
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    PERSONNE A ASSURER
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case20">
+                        <?php echo $responseContrat[0]['civiliteAssure']?>
+                    </div>
+                    <?php echo  $responseContrat[0]['nomAssure'].' '.$responseContrat[0]['prenomAssure'];?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    Nom de jeune fille: ----------------------------------------------------------------
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    BOITE POSTALE: 
+                    <div class="case50">
+                        <?php echo $responseContrat[0]['boitepostalAssure'];?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    Ville : 
+                    <div class="case50">
+                        Cotonou
+                    </div>
+                </td>
+                <td>
+                    TEL : 
+                    <div class="case60">
+                        <?php echo $responseContrat[0]['telephoneAssure'];?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    N° Acte de Naissance ou jugement Suppletif 
+                    <div class="case50">
+                        <?php echo  $responseContrat[0]['numpieceAssure'];?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    DATE DE NAISSANCE : 
+                    <div class="case50">
+                        <?php echo dateUS2FR($responseContrat[0]['datenaissanceAssure']); ?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email  
+                    <div class="case100">
+                        <?php echo $responseContrat[0]['emailAssure']; ?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    Nationalite 
+                    <div class="case50">
+                        Beninoise
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Preofession du souscripteur
+                </td>
+                <td colspan="3">
+                    <?php if(isset($responseContrat[0]['profession'])) echo $responseContrat[0]['profession'];else echo '';?>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Description de l'activite ou structure de l'emploi
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    BENEFICIAIRES DES GARANTIES SOUSCRITES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                     Du capital, l'assuré etant en vie
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="case case10"></div>
+                     Souscripteur 
+                    <div class="case case10"></div>
+                     L'assuré(e)
+                    <div class="case case10"></div>
+                     Autre personne
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case case10"></div>
+                     Le conjoint , à défaut les enfants nés et à naîttre, à défaut les héritiers de l'assuré(e).
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="case case10"></div>
+                     Autre personne : 
+                    <?php echo $responseContrat[0]['civilite'].'  '.$responseContrat[0]['nom1'].' '.$responseContrat[0]['prenom1'];?>
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    NATURES DES GARANTIES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <!-- pourcentagerente -->
+            <tr>
+                <td colspan="5">
+                    <div class="case60">
+                         Rente en cas de deces
+                    </div>
+                    25% 
+                    <?php  $casecoche=($responseContrat[0]['pourcentagerente']==25)? "casecoche" :"case case10"?>
+                    <div 
+                    <div class="<?php echo $casecoche;?>"></div>
+                    50% 
+                    <?php  $casecoche=($responseContrat[0]['pourcentagerente']==50)? "casecoche" :"case case10"?>
+                    <div 
+                    <div class="<?php echo $casecoche;?>"></div>
+                    75% 
+                    <?php  $casecoche=($responseContrat[0]['pourcentagerente']==75)? "casecoche" :"case case10"?>
+                    <div 
+                    <div class="<?php echo $casecoche;?>"></div>
+                    100% 
+                    <?php  $casecoche=($responseContrat[0]['pourcentagerente']==100)? "casecoche" :"case case10"?>
+                    <div 
+                    <div class="<?php echo $casecoche;?>"></div>
+                    Montant
+                    <div class="case case50">
+                        <?php echo $responseContrat[0]['renteannuelle']?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="case60">
+                        Rente en cas de vie (*)
+                    </div>
+                    <div class="case case100 ">
+                        <?php echo $responseContrat[0]['renteannuelle']; ?>
+                    </div>
+                     FCFA
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="case60">
+                        Date d'effet
+                    </div>
+                    <div class="case case50">
+                        <?php echo dateUS2FR($responseContrat[0]['dateeffet']); ?>
+                    </div>
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    <div style="width:60px;height:10px;display:inline;">
+                        Duree de differe
+                    </div>
+                    <div class="case case50">
+                        <?php echo dateUS2FR($responseContrat[0]['dureecontrat']); ?>
+                    </div>
+                </td>
+                <td >
+                    <div class="case60">
+                        Duree Totale (Rente+Differe)
+                    </div>
+                    <div class="case case50"></div>
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    PRIMES
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Le prélèvement des prime sera : annuel 
+                    <?php  $casecoche=($responseContrat[0]['periodicite']=='annuelle')? "casecoche" :"case case10"?>
+                    <div class="<?php echo $casecoche;?>" style="width:10px;height:10px;display:inline;"></div>
+                    semestriel 
+                    <?php  $casecoche=($responseContrat[0]['periodicite']=='semestrielle')? "casecoche" :"case case10"?>
+                    <div class="<?php echo $casecoche;?>"></div>
+                    trimestiel 
+                    <?php  $casecoche=($responseContrat[0]['periodicite']=='trimestielle')? "casecoche" :"case case10"?>
+                    <div class="<?php echo $casecoche;?>"></div>
+                    mensuel
+                    <?php  $casecoche=($responseContrat[0]['periodicite']=='mensuelle')? "casecoche" :"case case10"?>
+                    <div class="<?php echo $casecoche;?>"></div>
+                    unique 
+                    <?php  $casecoche=($responseContrat[0]['periodicite']=='unique')? "casecoche" :"case case10"?>
+                    <div class="<?php echo $casecoche;?>"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Montant prime fractionnée(*): 
+                    <div class="case case50"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    (*) Montant susceptible de majoration après analyse de la présente proposition 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Je soussigné (e) 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    demande &agrave; SAHAM ASSURANCE VIE, l'etablissement des conditions particulières du contrat.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Fait &agrave; 
+                    <div class="case200"></div>
+                     Le
+                    <div class="case200"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     Le souscripteur.
+                </td>
+                <td colspan="3" style="text-align:center;">
+                    L'assuree
+                </td>
+                <td style="text-align:right;">
+                    Le realisateur
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align:left;">
+                    ORDRE DE VIREMENT PERMANENT
+                </td>
+            </tr>
+            <tr class="lg">
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Code interbancaire 
+                    <div class="case100"></div>
+                </td>
+                <td>
+                    Code guichet 
+                    <div class="case80"></div>
+                </td>
+                <td>
+                    N° de compte 
+                    <div class="case100"></div>
+                </td>
+                <td>
+                    Clé 
+                    <div class="case20"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Domiciliation 
+                    <div class="case400"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Titulaire du compte 
+                    <div class="case400"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Montant 
+                    <div class="case100"></div>
+                </td>
+                <td>
+                    Date effet 
+                    <div class="case50"></div>
+                </td>
+                <td>
+                    Durée 
+                    <div class="case10"></div>
+                     ans
+                </td>
+                <td>
+                    Periodicite 
+                    <div class="case10"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Date
+                    <div class="case100"></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    Signature
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                     Je vous prie de bien vouloir debiter &agrave; la condition qu'il presente les provisions nécessaires,mon compte du montant de l'ordre de virement permanent que j'ai émis en la faveur de SAHAM ASSURRANCE VIE. En cas de litige sur le montant ou pour autre motif, je reglerai le differend avec SAHAM ASSURANCE VIE. 
+                </td>
+            </tr>
+        </table>
+    </div>
+</page>
+<page_footer style="padding-left:20% !important; text-align:center;">
+    <?php foreach ($coassureurList as $key =>
+     $value) {echo ' 
+    <img src="../typepretFolder/imagecoassureur/'.$value['logo'].'" alt="Logo Saham ASSURANCE" width="134" height="50" style="margin-left:20px !important" />
+    ';} ?>
+</page_footer>
+<?php$content=ob_get_clean();require('../html2pdf_v4.03/html2pdf.class.php');try{$pdf= new HTML2PDF('P','A4','fr');$pdf->
+writeHTML($content);if (ob_get_contents()) ob_end_clean();$pdfr=$pdf->
+Output('BIA.pdf');echo  $pdfr;}catch(HTML2PDF_exception $e) {echo $e;exit;}?>
+<!--  -->

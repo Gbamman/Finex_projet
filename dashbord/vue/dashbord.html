@@ -1,0 +1,172 @@
+<div id="main-container" style="min-height:600px;">
+    <ng:include src="'layout/header.html'"></ng:include>
+    <div id="page-content">
+        <!-- Table Styles Header -->
+        <div class="content-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="header-section">
+                        <h1>{{menu}}<a href="#/{{nomcourt}}" style="text-decoration: none">{{sousmenu}}</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container col-sm-12 col-lg-12 col-md-12" >
+            <div class="row">
+                <!-- Simple Stats Widgets -->
+                <div class="col-sm-6 col-lg-4 col-md-4">
+                    <a href="javascript:void(0)" class="widget">
+                        <div class="widget-content widget-content-mini text-left clearfix font-weight-info-pale">
+                            <div class="widget-icon pull-right themed-background">
+                                <i class="gi gi-cardio text-light-op"></i>
+                            </div>
+                            <h2 class="widget-heading h3 count"><strong>{{contrat | number}}</strong></h2>
+                            <span class="text-muted"> NOMBRE DE CONTRATS </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-md-4">
+                    <a href="javascript:void(0)" class="widget">
+                        <div class="widget-content widget-content-mini text-left clearfix font-weight-success-pale">
+                            <div class="widget-icon pull-right themed-background-success">
+                                <i class="gi gi-user text-light-op"></i>
+                            </div>
+                            <h2 class="widget-heading h3 text-success"><strong> {{primes | number }}</strong></h2>
+                            <span class="text-muted">PRIMES EMISES</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-md-4">
+                    <a href="javascript:void(0)" class="widget">
+                        <div class="widget-content widget-content-mini text-left clearfix font-weight-warning-pale">
+                            <div class="widget-icon pull-right themed-background-warning">
+                                <i class="gi gi-briefcase text-light-op"></i>
+                            </div>
+                            <h2 class="widget-heading h3 text-warning"><strong> {{capitaux | number }} </strong></h2>
+                            <span class="text-muted">CAPITAUX</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-md-4">
+                    <a href="javascript:void(0)" class="widget">
+                        <div class="widget-content widget-content-mini text-left clearfix font-weight-danger-pale">
+                            <div class="widget-icon pull-right themed-background-danger">
+                                <i class="gi gi-wallet text-light-op"></i>
+                            </div>
+                            <h2 class="widget-heading h3 text-danger"><strong>{{utilisateurs | number}}</strong></h2>
+                            <span class="text-muted">UTILISATEURS</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- END Simple Stats Widgets -->
+        <div class="row">
+            <div class="col-sm-12 col-lg-8 col-md-8">
+                <div class="widget">
+                    <div class="widget">
+                        <div class="widget-content border-bottom">
+                            <span class="pull-right text-muted">{{annee}}</span>
+                            Nombre de contrats par niveau
+                        </div>
+                        <!-- Bars Chart Title -->
+                        <!-- END Bars Chart Title -->
+                        <!-- Bars Chart Content -->
+                        <!-- Flot Charts (initialized in js/pages/compCharts.js), for more examples you can check out http://www.flotcharts.org/ -->
+                        <div class="widget-content border-bottom themed-background-muted">
+                            <div id="chart-bars" style="height: 380px;"></div>
+                        </div>
+                        <!-- END Bars Chart Content -->
+                        <!-- END Bars Chart Block -->
+                    </div>
+                </div>
+                <!-- Classic and Stacked Chart -->
+                <div class="row">
+                    <div class="col-sm-6 col-lg-6 col-md-6">
+                        <!-- Classic Chart Block -->
+                        <div class="widget">
+                            <div class="widget-content border-bottom">
+                                <span class="pull-right text-muted">{{annee}}</span>
+                                Historique des primes émises
+                            </div>
+                            <div class="widget-content border-bottom themed-background-muted">
+                                <div id="chart-classic-dash" style="height: 393px;"></div>
+                            </div>
+                            <!-- END Bars Chart Content -->
+                            <!-- END Bars Chart Block -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-md-6">
+                        <div class="widget">
+                            <div class="widget-content border-bottom">
+                                <span class="pull-right text-muted">{{annee}}</span>
+                                Historique des capitaux
+                            </div>
+                            <div class="widget-content border-bottom themed-background-muted">
+                                <div id="chart-classic-prime" style="height: 393px;"></div>
+                            </div>
+                            <!-- END Bars Chart Content -->
+                            <!-- END Bars Chart Block -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END Chart Widget -->
+            </div>
+            <div class="col-sm-6 col-lg-4 col-md-4">
+                <!-- Stats User Widget -->
+                <div href="page_ready_profile.html" class="widget" style="text-decoration:none !important;">
+                    <div class="widget-content border-bottom text-dark">
+                        <span class="pull-right text-muted"></span>
+                        Liste des contrats en alerte
+                    </div>
+                    <div class="widget-content border-bottom text-center themed-background-muted">
+                        <div class="table-responsive">
+                            <div class="widget">
+                                <table id="example-datatable" class="table table-striped table-bordered table-vcenter export-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                Nom
+                                            </th>
+                                            <th class="text-center">
+                                                Prenom
+                                            </th>
+                                            <th class="text-center">
+                                                Capital
+                                            </th>
+                                            <th class="text-center">
+                                                Date d'effet
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="contratalerte in filtered = (contratsalerte | filter:search | orderBy :'-idcontrat' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idcontrat ="{{contratalerte.idcontrat}}">
+                                            <td>
+                                                {{contratalerte.nom}}
+                                            </td>
+                                            <td>
+                                                {{contratalerte.prenom}}
+                                            </td>
+                                            <td>
+                                                {{contratalerte.capital | number}}
+                                            </td>
+                                            <td>
+                                                {{contratalerte.dateeffet | date: 'shortDate'}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant"></pagination>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-full-top-bottom">
+                        <div class="row text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng:include src="'layout/right.html'"></ng:include>
+<ng:include src="'layout/left.html'"></ng:include>

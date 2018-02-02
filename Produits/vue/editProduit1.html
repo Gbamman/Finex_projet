@@ -1,0 +1,154 @@
+<div class="block block-themes">
+    <div class="block-title">
+        <h2>INFORMATIONS GENERALES</h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form-element label="" mod="produit">
+                <select id="example-hf-password" name="libelleproduit"ng-model="produit.libelleproduit" >
+                    <option value="ASSURDECES">ASSURANCE DECES</option>
+                    <option value="ASSUREPARGNE">ASSURANCE EPARGNE</option>
+                    <option value="ASSURMIXTE">ASSURANCE MIXTE</option>
+                </select>
+                <span>Produit</span>
+            </form-element>
+            <form-element label="" mod="" style="display:none">
+                <input type="text" id="example-hf-password" name="numcontrat" placeholder="" ng-model="numcontrat" class="form-control"  only-numbers>
+                <label>N° Proposition <b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="dateFormat" name="dateeffet" placeholder="" ng-model="produit.dateeffet" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date effet-date-valide-educ/>
+                <label>Date effet<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="dateFormat" name="dateecheance" placeholder="" ng-model="produit.dateecheance" class="form-control" ng-required="true" ui-model-view-value="true" valid-date  disabled="true"/>
+                <label>Date écheance<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit" style="display:none">
+                <input type="text" id="example-hf-password" name="codeapporteur" ng-model="produit.codeapporteur"  placeholder="" class="form-control" only-numbers>
+                <label>Apporteur</label>
+            </form-element>
+        </div>
+        <div class="col-md-4">
+            <form-element label="" mod="" style="display:none">
+                <input type="text" id="example-hf-email" name="statut" placeholder="" ng-model="statut" class="form-control">
+                <label>Statut</label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="dateFormat" name="datesignature" placeholder="" ng-model="produit.datesignature" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date  verif-champs-educ/>
+                <label>Date Signature<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" name="dureecontrat" ng-model="produit.dureecontrat"  placeholder="" class="form-control" echeance-date-educ only-numbers verif-champs-educ>
+                <label>Durée de contrat</label>
+            </form-element>
+            <form-element label="" mod="produit" style="display:none">
+                <input type="text" id="example-hf-password" name="apporteur" ng-model="produit.apporteur"  placeholder="" class="form-control" only-numbers>
+                <label>Code apporteur</label>
+            </form-element>
+        </div>
+    </div>
+</div>
+<div class="block block-themes">
+    <div class="block-title">
+        <h2>SOUSCRIPTEUR</h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form-element label="" mod="produit" style="display:none">
+                <select id="example-hf-password" name="typepersonne"ng-model="produit.typepersonne">
+                    <option value="Personne Physique">Personne Physique</option>
+                    <option value="Personne morale">Personne morale</option>
+                </select>
+                <span>Type Personne</span>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="numpiece" ng-model="produit.numpiece" class="form-control"  ng-required="true" >
+                <label>Numero de pièce <b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="nom" ng-model="produit.nom" class="form-control"  ng-required="true" capitalize verif-champs-educ>
+                <label>nom <b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="telephone" ng-model="produit.telephone" class="form-control"  ng-required="true" ng-maxlength="8" maxlength="8" only-numbers>
+                <label>Téléphone<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="boitepostal" ng-model="produit.boitepostal" class="form-control">
+                <label>Boîte Postal <b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit" style="display:none">
+                <select id="example-hf-password" name="typeprelevement"ng-model="produit.typeprelevement" >
+                    <option value="Mr">Mr</option>
+                    <option value="Personne morale">Personne morale</option>
+                </select>
+                <span>Type de prélevement</span>
+            </form-element>
+            <div style="width:30% !important; display:inline-block; vertical-align:top;font-size:.9em;">
+                <form-element mod="produit">
+                    <input type="text" id="example-hf-password" placeholder="" name="codeagence" ng-model="produit.codeagence" class="form-control"  ng-required="true" only-numbers>
+                    <label>Code angence</label>
+                </form-element>
+            </div>
+            <div style="width:30% !important; display:inline-block; vertical-align:top;font-size:.9em;">
+                <form-element mod="produit">
+                    <input type="text" id="example-hf-password" placeholder="" name="matricule" ng-model="produit.matricule" class="form-control"  ng-required="true" only-numbers>
+                    <label>Num de compte</label>
+                </form-element>
+            </div>
+            <div style="width:30% !important; display:inline-block; vertical-align:top;font-size:.9em;">
+                <form-element mod="produit">
+                    <input type="text" id="example-hf-password" placeholder="" name="rib" ng-model="produit.rib" class="form-control"  ng-required="true" only-numbers>
+                    <label>Rib</label>
+                </form-element>
+            </div>
+            <form-element label="" mod="produit">
+                <select ng-model="produit.idagence"id="example-hf-password" name="idagence" placeholder="" class="form-control"ng-options="idagence as idagence.libelle for idagence in agences  track by idagence.idagence">
+                    <option value="{{idagence.libelle}}">{{idagence.libelle}}</option>
+                </select>
+                <span>agence</span>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="intitulecompte" ng-model="produit.intitulecompte" class="form-control"  ng-required="true" >
+                <label>Intitule compte</label>
+            </form-element>
+        </div>
+        <div class="col-md-4">
+            <form-element label="" mod="produit">
+                <select id="example-hf-password" name="civilite"ng-model="produit.civilite" >
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mme">Mme</option>
+                    <option value="Mlle">Mlle</option>
+                </select>
+                <span>Civilité</span>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="prenom" ng-model="produit.prenom" class="form-control"  ng-required="true" capitalize verif-champs-educ>
+                <label>Prenom<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="dateFormat" name="datenaissance" placeholder="" ng-model="produit.datenaissance" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date />
+                <label>Date de naissance<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="text" id="example-hf-password" placeholder="" name="profession" ng-model="produit.profession" class="form-control">
+                <label>Profession<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element label="" mod="produit">
+                <input type="email" id="example-hf-password" placeholder="" name="email" ng-model="produit.email" class="form-control" >
+                <label>E-mail<b class="text-danger">*</b></label>
+            </form-element>
+            <form-element mod="produit">
+                <select ng-model="produit.idbanque" ng-change="AgenceId(produit.idbanque.id,produit.idbanque.etat);"id="example-hf-password" name="idbanque" class="form-control dinamique-select"  ng-options="idbanque as idbanque.libelle for idbanque in banqueContrat  track by idbanque.id">
+                    <option value="{{idbanque.libelle}}">{{idbanque.libelle}}</option>
+                </select>
+                <span>Banque/Structure</span>
+            </form-element>
+        </div>
+    </div>
+</div>

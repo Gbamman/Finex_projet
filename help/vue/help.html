@@ -1,0 +1,33 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <div id="page-content">
+    <!-- Table Styles Header -->
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6" style="height:100px !important;width: 200px important:">
+          <div class="header-section">
+            <h1>{{menu}}<a href="#/{{nomcourt}}" style="text-decoration: none">{{sousmenu}}</a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="block-title"></div>
+      <div class="row">
+        <div class="col-sm-11">
+          <ng:include src="'help/vue/video.html'"></ng:include>
+        </div>
+        <!--
+        <div class="col-sm-3">
+          <div ng-controller="helpCtrl as controller" class="videogular-container-Allvideos">
+            <videogular vg-theme="materiel">
+              <vg-media vg-src="controller.config.sources"vg-tracks="controller.config.tracks" vg-preload="controller.config.preload"></vg-media>
+              <my-play-button></my-play-button>
+            </videogular>
+          </div>
+        </div>
+          -->
+      </div>
+    </div>
+    <ng:include src="'layout/right.html'"></ng:include>
+    <ng:include src="'layout/left.html'"></ng:include>

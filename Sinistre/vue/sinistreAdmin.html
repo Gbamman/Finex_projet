@@ -1,0 +1,98 @@
+<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i></button>
+<div class="modal-header">
+    <h2 class="modal-title">{{title}}</h2>
+    <p style="display:none;" class="col-md-offset-3">
+         Les champs portant l'indice 
+        <span class="text-danger">*</span>
+         sont obligatoires {{product.idcontrat}}
+    </p>
+</div>
+<div class="modal-body">
+    <form  name="PrestationDeclareForm" class="form-horizontal"  onsubmit="return false;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <form-element mod="prestationdeclare">
+                            <select ng-model="prestationdeclare.prestationContent"ng-change="TypepretFilter(prestationdeclare.prestationContent.idprestation)" id="example-hf-password" name="prestationContent" class="form-control dinamique-select"  ng-options="prestationContent as prestationContent.libelle for prestationContent in prestations  track by prestationContent.idprestation">
+                                <option value="{{prestationContent.libelle}}">{{prestationContent.libelle}}</option>
+                            </select>
+                            <span>PRESTATION</span>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="numeropret" placeholder="" ng-model="prestationdeclare.numerocontrat" class="form-control" ng-required="true" focus sinistre-info>
+                            <label>NUMERO DU CONTRAT OU DU BIA <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="numeropret" placeholder="" ng-model="prestationdeclare.identifiantassure" class="form-control" ng-required="true" focus ng-disabled="prestationdeclare.verification==='oui'">
+                            <span>NOM ET PRENOM DE L'ASSURE <b class="text-danger">*</b></span>
+                        </form-element>
+                        <form-element mod="prestationdeclare" >
+                            <input type="text" id="example-hf-password" name="coassureur" placeholder="" ng-model="prestationdeclare.coassureur" class="form-control" ng-required="true" ng-disabled="prestationdeclare.coassureur==='CO-ASSURANCE'">
+                            <label>NOM DE L'ASSUREUR <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="dateeffet" placeholder="" ng-model="prestationdeclare.dateeffet" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date ng-disabled="prestationdeclare.verification==='oui'">
+                            <span>Date D'EFFET <b class="text-danger">*</b></span>
+                        </form-element>
+                        <form-element mod="prestationdeclare" >
+                            <input type="text" id="example-hf-password" name="dateecheance" placeholder="" ng-model="prestationdeclare.dateecheance" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date  ng-disabled="prestationdeclare.verification==='oui'">
+                            <span>DATE ECHEANCE <b class="text-danger">*</b></span>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="capital" placeholder="" ng-model="prestationdeclare.capital" class="form-control" ng-required="true" focus only-numbers format="number" ng-disabled="prestationdeclare.verification==='oui'">
+                            <label>CAPITAL <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="primeassurance" placeholder="" ng-model="prestationdeclare.primeassurance" class="form-control" ng-required="true" focus only-numbers format="number" ng-disabled="prestationdeclare.verification==='oui'">
+                            <label>PRIME PAYEE <b class="text-danger">*</b></label>
+                        </form-element>
+                    </div>
+                    <div class="col-md-4">
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="nomdeclarant" placeholder="" ng-model="prestationdeclare.nomdeclarant" class="form-control"  ng-required="true" focus >
+                            <label>NOM DU DECLARANT <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="montantattendu" placeholder="" ng-model="prestationdeclare.montantattendu" class="form-control"  ng- focus only-numbers format="number">
+                            <label>MONTANT ATTENDU </label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="montantregle" placeholder="" ng-model="prestationdeclare.montantregle" class="form-control" focus only-numbers format="number">
+                            <label>MONTANT REGLE</label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="datedeclaration" placeholder="" ng-model="prestationdeclare.datedeclaration" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date>
+                            <label>DATE DE DECLARATION <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="datereglement" placeholder="" ng-model="prestationdeclare.datereglement" class="form-control" ui-mask="99/99/9999" model-view-value="true" valid-date>
+                            <label>DATE DE REGLEMENT</label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="datesurvenance" placeholder="" ng-model="prestationdeclare.datesurvenance" class="form-control" ng-required="true" ui-mask="99/99/9999" model-view-value="true" valid-date>
+                            <label>DATE DE SURVENANCE <b class="text-danger">*</b></label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <input type="text" id="example-hf-password" name="observations" placeholder=""  ng-model="prestationdeclare.observations" />
+                            <label>OBSERVATIONS</label>
+                        </form-element>
+                        <form-element mod="prestationdeclare">
+                            <button ng-click="PiecesFournir()" class="btn btn-effect-ripple btn-info">PIECES FOURNIES</button>
+                        </form-element>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="modal-footer col-md-8">
+                        <div class="col-sm-4 col-md-offset-6 form-actions">
+                            <button type="reset" ng-click="cancel()" class="btn btn-effect-ripple btn-danger">Annuler</button>
+                        </div>
+                        <div class="col-sm-4 form-actions">
+                            <button type="submit"ng-click="saveSinistreInfo(prestationdeclare);"ng-disabled="PrestationDeclareForm.$invalid || enableUpdate"class="btn btn-sm btn-primary actionsButtons"type="submit"><i class="ace-icon fa fa-check"></i>{{buttonText}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

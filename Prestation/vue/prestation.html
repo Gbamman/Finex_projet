@@ -1,0 +1,95 @@
+<div id="main-container" style="min-height:600px;">
+  <ng:include src="'layout/header.html'"></ng:include>
+  <!-- END Header -->
+  <div id="page-content">
+    <div class="content-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header-section">
+            <h1>{{menu}}<a href="#/nomcourt" style="text-decoration: none">{{sousmenu}}</a></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <a href="" class="widget" ng-click="addPrestation(prestation);">
+          <div class="widget-content widget-content-mini text-left clearfix">
+            <div class="widget-icon pull-right themed-background-danger">
+              <i class="gi gi-user text-light-op"></i>
+            </div>
+            <span class="text-muted">AJOUTER UNE PRESTATION</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="block full">
+      <div class="row">
+        <div class="col-md-2 mui-textfield--float-label mui-select">
+          Pages
+          <select ng-model="entryLimit" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+        <div class="col-md-5 mui-textfield mui-textfield--float-label filterContratClass">
+          <input type="text" ng-model="search" ng-change="filter()" placeholder="" class="form-control" />
+          <label>Filtrer</label>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <br/>
+        <div class="widget">
+          <div class="col-md-7">
+            <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    ID
+                  </th>
+                  <th class="text-center">
+                    PRESTATIONS
+                  </th>
+                  <th class="text-center">
+                    ETAT PRESTATION
+                  </th>
+                  <th class="text-center">
+                    ACTIONS
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-hide="prestations">
+                  <td class="text-center" colspan="3" style="font-size:.7em !important">
+                    <i class="fa fa-spinner fa-2x fa-spin text-muted" ></i>
+                  </td>
+                </tr>
+                <tr ng-repeat="prestation in filtered = (prestations | filter:search | orderBy :'-idprestation' :reverse :predicate) | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" idprestation ="{{prestation.idprestation}}">
+                  <td class="text-center">
+                    {{prestation.idprestation}}
+                  </td>
+                  <td>
+                    {{prestation.libelle}}
+                  </td>
+                  <td>
+                    {{prestation.etatContratLibelle}}
+                  </td>
+                  <td class="text-center">
+                    <a href="" data-toggle="tooltip" title="Modifier le contrat" class="btn btn-effect-ripple btn-ms btn-success" ng-click="addPrestation(prestation);"  style="width:180px"><i class="fa fa-pencil"></i> Ajouter des pieces</a>
+                    <a href="" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-ms btn-danger" ng-click="deletaPrestation(prestation);" style="width:100px"><i class="fa fa-times"> Supprimer</i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination total-items="filteredItems" ng-model="currentPage" on-select-page="setPage(page)" ng-change="pageChanged()" items-per-page="entryLimit" class="pagination-small"  previous-text="Précedent" next-text="Suivant" max-size="10"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng:include src="'layout/right.html'"></ng:include>
+<ng:include src="'layout/left.html'"></ng:include>
